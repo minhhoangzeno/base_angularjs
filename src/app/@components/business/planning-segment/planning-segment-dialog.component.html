@@ -1,0 +1,91 @@
+<nb-card class="dialog-container" *ngIf="!this.selectedSegmentId" >
+  <nb-card-header class="dialog-header row">
+    <label class="dialog-label">Save Segment</label>
+    <button class="dialog-btn -close" (click)="close()">
+      <nb-icon class="dialog-btn -close-icon" icon="close-outline" pack="eva" fullWidth></nb-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-body class="dialog-body">
+    <div class="plan-mgt-checkbox -div">
+      <div class="plan-mgt-input-title">You want to</div>
+        <nb-checkbox
+        class="plan-mgt-checkbox"
+        [checked]="!updateMode"
+        [disabled]="!updateMode"
+        (checkedChange)="changeMode(false)"
+      >
+        Create a new segment
+      </nb-checkbox>
+      <nb-checkbox
+        class="plan-mgt-checkbox -update"
+        [checked]="updateMode"
+        [disabled]="updateMode"
+        (checkedChange)="changeMode(true)"
+      >
+        Update existing segment
+      </nb-checkbox>
+      </div>
+      <div *ngIf="updateMode; else createNewSegment">
+        <ng-container *ngTemplateOutlet="updateSegment"></ng-container>
+      </div>
+  </nb-card-body>
+
+  <ng-template #createNewSegment>
+  <label class="dialog-input-label">Segment Name</label>
+  <div>
+    <input
+      type="text"
+      autofocus
+      class="dialog-input"
+      placeholder="Input Text"
+      [(ngModel)]="name"
+    />
+  </div>
+    <div class="row align-items-end dialog-btn -div mt-3 ">
+      <button type="button" class="dialog-btn -cancel" (click)="close()">Cancel</button>
+      <button type="button" class="dialog-btn -save" [disabled]="!name" (click)="save()">
+        Save
+      </button>
+    </div>
+  
+  </ng-template>
+
+  <ng-template #updateSegment>
+    <div class="dialog-text">Update existing segment</div>
+    <nb-select
+    class="col-2 segment-mgt-select"
+    placeholder="Select existing segment"
+    (selectedChange)="changeOption($event)"
+    >
+    <nb-option  *ngFor="let segment of segments | async"
+    class="segment-mgt-select" [value]="segment.id">{{segment.name}}</nb-option>
+    </nb-select>
+
+      <div class="row align-items-end dialog-btn -div mt-3">
+        <button type="button" class="dialog-btn -cancel" (click)="close()">Cancel</button>
+        <button type="button" class="dialog-btn -save" (click)="save()">
+          Save
+        </button>
+      </div>
+  </ng-template>
+  
+</nb-card>
+
+
+<nb-card class="dialog-container dialog-container-none" *ngIf="this.selectedSegmentId" >
+  <nb-card-header class="dialog-header row">
+    <label class="dialog-label">
+    </label>
+    <button class="dialog-btn -close" (click)="close()">
+      <nb-icon class="dialog-btn -close-icon" icon="close-outline" pack="eva" fullWidth></nb-icon>
+    </button>
+  </nb-card-header>
+  <div class="plan-mgt-input-title none-title">
+    This segment is already saved, please adjust your filters to create a new segment
+  </div>
+  <div class="row align-items-end dialog-btn -div mt-3 ">
+    <button type="button" class="dialog-btn -cancel" (click)="close()">Cancel</button>
+  </div>
+  
+  
+</nb-card>

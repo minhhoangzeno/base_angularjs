@@ -1,0 +1,97 @@
+<nb-card fullWidth>
+  <nb-card-body class="d-flex">
+    <div class="col-2 filter-col">
+      <div class="filter-label">Products</div>
+      <div class="filter-box">
+        <cel-select-tree
+          placeholder="All"
+          searchPlaceholder="Search Product"
+          [filters]="(selectedSegment | async)?.product | ensureArray"
+          [settings]="productSettings"
+          [data]="segmentProductsOptions | async | ensureArray"
+          [showExpandIndicator]="true"
+          (filtersChange)="onProductFiltersChanged($event)"
+        ></cel-select-tree>
+      </div>
+    </div>
+    <div class="col-2 filter-col">
+      <div class="filter-label">Customers</div>
+      <div class="filter-box">
+        <cel-select-tree
+          placeholder="All"
+          [filters]="(selectedSegment | async)?.customer | ensureArray"
+          [settings]="customerSettings"
+          [data]="segmentCustomersOptions | async | ensureArray"
+          [showExpandIndicator]="true"
+          (filtersChange)="onCustomerFiltersChanged($event)"
+        ></cel-select-tree>
+      </div>
+    </div>
+    <div class="col-2 filter-col">
+      <div class="filter-label">Locations</div>
+      <div class="filter-box">
+        <cel-select-tree
+          placeholder="All"
+          [filters]="(selectedSegment | async)?.location | ensureArray"
+          [settings]="locationSettings"
+          [data]="segmentCustomersOptions | async | ensureArray"
+          [showExpandIndicator]="true"
+          (filtersChange)="onLocationFiltersChanged($event)"
+        ></cel-select-tree>
+      </div>
+    </div>
+    <div class="save-as-segment" >
+        <button
+        size="small"
+        nbButton
+        status="primary"
+        (click)="addSavedSegment()"
+      >
+      <nb-icon nbPrefix icon="save-outline"></nb-icon>
+      Save As Segment
+    </button>
+    </div>
+    
+    <div class="col-2">
+      <div class="filter-label">Selected Segment</div>
+      <nb-form-field class="popover-container">
+        <input
+          type="text"
+          class="filter-box"
+          nbInput
+          fullWidth
+          [nbPopover]="component"
+          nbPopoverPlacement="bottom"
+          fieldSize="small"
+          placeholder="Select a Segment"
+          (click)="openSegmentManagementPopOver()"
+          [value]="(selectedSegment | async)?.name || ''"
+        />
+        <nb-icon
+          nbSuffix
+          icon="chevron-down-outline"
+          (click)="openSegmentManagementPopOver()"
+        ></nb-icon>
+      </nb-form-field>
+    </div>
+    <div class="col-2 filter-col date-range-box">
+      <div class="filter-label">Date Range</div>
+      <nz-range-picker
+        class="form-control range-picker"
+        [formControl]="formControl_selectedRange"
+        nzPlaceHolder="Select Date Range"
+        [nzAllowClear]="false"
+        [nzDisabledDate]="selectableDateRangeFn | async | defaultTo: noDateAllowed"
+        [nzRanges]="presettedDateRanges | async | defaultTo: {}"
+      ></nz-range-picker>
+    </div>
+
+    <button
+      class="btn-setting"
+      status="primary"
+      (click)="openWidgetManagementWindow()"
+    >
+      <nb-icon icon="settings-2-outline"></nb-icon>
+    </button>
+  </nb-card-body>
+</nb-card>

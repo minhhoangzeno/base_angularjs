@@ -1,0 +1,16 @@
+<nb-card *ngIf="!this.eventVersion || (!this.eventDetail && !this.eventEdit) ">
+  <nb-card-header class="event-timeline-header">Event TimeLine</nb-card-header>
+  <nb-card-body>
+    <div id="chart">
+      <apx-chart
+        [series]="chartOptions.series | defaultTo:[]"
+        [chart]="chartOptions.chart | defaultTo:{type: 'rangeBar'}"
+        [plotOptions]="chartOptions.plotOptions|defaultTo:{}"
+        [xaxis]="chartOptions.xaxis|defaultTo:{}"
+        [yaxis]="chartOptions.yaxis|defaultTo:{}"
+        [dataLabels]="chartOptions.dataLabels|defaultTo:{}"
+        [grid]="chartOptions.grid|defaultTo:{}"
+      ></apx-chart>
+    </div>
+  </nb-card-body>
+</nb-card>

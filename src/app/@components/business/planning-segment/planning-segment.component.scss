@@ -1,0 +1,103 @@
+@import '~@nebular/theme/styles/core/mixins';
+@import '../../../@theme/styles/themes';
+
+.filter-label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #686868;
+  margin-bottom: 5px;
+}
+
+.filter-box {
+  background-color: #fcfcfc;
+  box-sizing: border-box;
+  border-radius: 4px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Roboto;
+}
+
+[nbInput].filter-box::placeholder {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #979797;
+}
+
+/* Styling code applies for screen that bigger than 1100px */
+@media screen and (min-width: 1100px) {
+  .filter-col {
+    max-width: 14%;
+  }
+}
+
+/* Styling code applies for screen that smaller than 1100px */
+@media screen and (max-width: 1099px) {
+  .filter-col {
+    max-width: 13.5%;
+  }
+}
+
+.date-range-box {
+  max-width: 23%;
+  padding: 0%;
+}
+.range-picker{
+  height: 32px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+}
+.date-range-icon {
+  margin-top: 0.75em;
+}
+
+@include nb-install-component() {
+  button[nbButton] {
+    margin-top: 19px;
+    background-color: #426c9d;
+    text-transform: none;
+    font-size: 14px;
+    font-family: Roboto;
+    height: 32px;
+  }
+}
+
+/** Prevent capturing pointer events on form field addons. */
+.ignore-addon {
+  ::ng-deep .nb-form-field-addon {
+    pointer-events: none;
+  }
+}
+
+/** The !important added to ignore the margin-left of nbButton. */
+.widget-btn {
+  width: 140px;
+  margin-left: 10px !important;
+}
+
+nb-card {
+  margin: 0;
+  border-radius: 0;
+}
+
+.btn-setting{
+  background-color: var(--card-background-color);
+  margin-left: 30px;
+  border: none;
+  padding-top: 14px;
+  margin-top: 11px;
+}
+
+.save-as-segment{
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Roboto;
+}

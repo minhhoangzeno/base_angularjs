@@ -1,0 +1,87 @@
+<!--
+  ~ Copyright (c) Akveo 2019. All Rights Reserved.
+  ~ Licensed under the Single Application / Multi Application License.
+  ~ See LICENSE_SINGLE_APP / LICENSE_MULTI_APP in the 'docs' folder for license information on type of purchased license.
+  -->
+
+<div class="row simcel-logo">
+  <img src="../../../../assets/images/simcel-icon.svg" />
+  <img src="../../../../assets/images/simcel-logo.svg" />
+</div>
+<!-- <h1 id="title" class="title">Log In</h1> -->
+<div class="wrap__login-fail" >
+  <nb-alert
+  class="login-alert -fail"
+  *ngIf="showMessages.error && (errors | async)?.length && (submitted | async) === false"
+  outline="danger"
+  role="alert"
+>
+  <ul class="alert-message-list">
+    <li *ngFor="let error of errors | async" class="alert-message -fail">
+      <nb-icon class="login-alert-icon" icon="alert-circle-outline"></nb-icon>{{ error }}
+    </li>
+  </ul>
+</nb-alert>
+</div>
+
+
+<nb-alert
+  class="login-alert -succeed"
+  *ngIf="showMessages.success && (messages | async)?.length && (submitted | async) === false"
+  outline="success"
+  role="alert"
+>
+  <ul class="alert-message-list">
+    <li *ngFor="let message of messages | async" class="alert-message -succeed">
+      <nb-icon class="login-alert-icon" icon="checkmark-circle-2-outline"></nb-icon>{{ message }}
+    </li>
+  </ul>
+</nb-alert>
+
+<div [formGroup]="loginForm" aria-labelledby="title">
+  <div class="form-control-group">
+    <input
+      class="input-box"
+      id="input-email"
+      formControlName="email"
+      [attr.aria-invalid]="email?.invalid && email?.touched ? true : null"
+      placeholder="Email"
+    />
+    <div class="validator__input" ><cel-validation-message
+      label="Email address"
+      [showPattern]="email?.hasError('pattern') && email?.touched"
+      [showRequired]="email?.errors?.required && email?.touched"
+    ></cel-validation-message></div>
+    
+    <input
+      class="input-box"
+      id="input-password"
+      formControlName="password"
+      type="password"
+      placeholder="Password"
+    />
+    <div class="validator__input" >
+      <cel-validation-message
+      label="Password"
+      [showMinLength]="password?.hasError('minlength') && password?.touched"
+      [showMaxLength]="password?.hasError('maxlength') && password?.touched"
+      [showRequired]="password?.errors?.required && password?.touched"
+      [minLength]="minLength"
+      [maxLength]="maxLength"
+    ></cel-validation-message>
+    </div>
+    
+
+    <button
+      class="login-btn"
+      (click)="login()"
+      [disabled]="(submitted | async) || !loginForm.valid"
+      [class.btn-pulse]="submitted | async"
+    >
+      Confirm
+    </button>
+    <span class="label-with-link">
+      <a class="forgot-password caption-2" routerLink="../request-password">Forgot password?</a>
+    </span>
+  </div>
+</div>

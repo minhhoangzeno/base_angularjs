@@ -1,0 +1,44 @@
+<div class="popup-container">
+  <div class="p-2">
+    <nb-form-field *ngIf="dataSource">
+      <nb-icon nbPrefix icon="search" pack="eva"></nb-icon>
+      <input
+        class="search-filter-section"
+        nbInput
+        fullWidth
+        autofocus
+        fieldSize="small"
+        [placeholder]="searchPlaceholder"
+        [nbFilterInput]="dataSource"
+      />
+    </nb-form-field>
+  </div>
+  <div class="table">
+    <table *ngIf="dataSource" [nbTreeGrid]="dataSource">
+      <tr
+        nbTreeGridRow
+        *nbTreeGridRowDef="let row; columns: allColumns"
+        class="tree-level"
+        style="--transparent-by-level: {{ row.level / 10 }}"
+      ></tr>
+      <ng-container [nbTreeGridColumnDef]="selectedColumn">
+        <td *nbTreeGridCellDef="let row" class="checkbox-column">
+          <nb-checkbox
+            class="filter-checkbox"
+            [indeterminate]="isIndeterminate(row.data.id)"
+            [checked]="selectedIdsSet.has(row.data.id)"
+            (checkedChange)="onCheckedChange(row.data.id, $event)"
+            (click)="$event.stopPropagation()"
+          ></nb-checkbox>
+        </td>
+      </ng-container>
+      <ng-container [nbTreeGridColumnDef]="nameColumn">
+        <td nbTreeGridCell *nbTreeGridCellDef="let row">
+          <span [class]="'ml-' + row.level + ' ' + 'pl-' + row.level">
+            {{ row.data.label }}
+          </span>
+        </td>
+      </ng-container>
+    </table>
+  </div>
+</div>

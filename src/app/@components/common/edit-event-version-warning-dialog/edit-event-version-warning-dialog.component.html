@@ -1,0 +1,28 @@
+<nb-card class="warning-dialog">
+  <nb-card-header class="warning-dialog-title">Edit Event Version Warning</nb-card-header>
+  <div class="warning-dialog-message">
+    This event is currently used in
+    <b> {{ scenarios?.length }} scenarios across {{ plans?.length }} plans </b>, are you sure you
+    want to overwrite it and re-run all scenarios?
+  </div>
+  <nb-accordion class="warning-dialog-accordion" *ngIf="plans && scenarios">
+    <nb-accordion-item *ngFor="let plan of plans">
+      <nb-accordion-item-header class="warning-dialog-plan-name">{{
+        plan.name
+      }}</nb-accordion-item-header>
+      <nb-accordion-item-body *ngFor="let scenario of getScenariosFromPlanRef(plan.id)">
+        <div class="warning-dialog-scenario-name">
+          {{ scenario.name }}
+        </div>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+  <nb-card-footer>
+    <div class="warning-dialog-btn">
+      <button nbButton class="warning-dialog-btn -cancel" (click)="ref.close(false)">Cancel</button>
+      <button nbButton class="warning-dialog-btn -process" (click)="ref.close(true)">
+        Process anyway
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

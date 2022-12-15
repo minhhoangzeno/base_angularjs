@@ -1,0 +1,12 @@
+<nb-card>
+  <nb-card-header class="row align-items-center">
+    <div class="col-2 row">
+      <nb-icon icon="arrow-back-outline"></nb-icon>
+      <button class="back-btn" routerLink="/pages/explorer/demand-planning">Back</button>
+    </div>
+    <div class="col header">Forecast Explorer</div>
+  </nb-card-header>
+  <nb-card-body>
+    <iframe *ngIf="srcObs | async; let src" [src]="src" frameborder="0"></iframe>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,146 @@
+// Put the background color for each select option in the select tree. The transparent will be different for each level.
+.tree-level {
+  background-color: rgba(196, 196, 196, var(--transparent-by-level)) !important;
+}
+
+.popup-container {
+  max-width: 30em;
+  background-color: white;
+  width: 294px;
+
+  > .table {
+    max-height: 20em;
+    overflow-y: scroll;
+  }
+}
+
+.checkbox-column {
+  width: 2em;
+}
+
+[nbInput].search-filter-section {
+  border-style: none none solid none;
+  background-color: transparent;
+  border-radius: 0%;
+  font-family: Roboto;
+  color: #686868;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  border-color: #c4c4c4;
+
+  &::placeholder {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #979797;
+  }
+
+  &:hover {
+    background-color: transparent;
+    border-color: #c4c4c4;
+  }
+}
+
+// Styling for custom-checkbox, include hover, enabled, ...
+::ng-deep {
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox {
+    height: 16px;
+    width: 16px;
+    margin-top: 4px;
+    margin-left: 5px;
+    background-color: #ffffff;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .native-input:enabled:focus + .custom-checkbox {
+    background-color: #ffffff;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox:hover {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .native-input:enabled:active + .custom-checkbox {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+}
+
+// Styling for custom-checkbox when it is indeterminate, include hover, enabled, ...
+::ng-deep {
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:active
+    + .custom-checkbox.indeterminate {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:focus
+    + .custom-checkbox.indeterminate {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox:hover.indeterminate {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox.indeterminate {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+}
+
+// Styling for custom-checkbox when it is checked, include hover, enabled, ...
+::ng-deep {
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:focus
+    + .custom-checkbox.checked {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:active
+    + .custom-checkbox.checked {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox.checked {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox:hover.checked {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+}
+
+.table td {
+  border: none;
+  padding: 0;
+  height: 25px;
+}
+
+span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #484848;
+}

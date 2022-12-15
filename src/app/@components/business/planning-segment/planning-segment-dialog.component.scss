@@ -1,0 +1,189 @@
+.dialog-container {
+  width: 427px;
+  height: 229px;
+  background-color: #ffffff;
+}
+.dialog-container-none{
+  width: 427px;
+  height: 79px;
+  background-color: #ffffff;
+}
+.dialog-header {
+  width: 427px;
+  height: 20px;
+  border: none;
+  margin: 0px;
+}
+
+.dialog-label {
+  width: 359px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00355c;
+}
+
+.dialog-text {
+  margin-bottom: 10px;
+  width: 352px;
+  height: 18px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00355c;
+}
+
+.dialog-input-label {
+  width: 109px;
+  height: 14px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #686868;
+  margin-bottom: 3px;
+}
+
+.dialog-footer {
+  border: none;
+}
+
+.dialog-body {
+  padding-top: 0px;
+  padding-left: 24px;
+}
+
+.dialog-input {
+  width: 380px;
+  height: 32px;
+  background: #fcfcfc;
+  border: 1px solid #e3e3e3;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #343a40;
+  padding: 7px 11px 7px 11px;
+}
+
+.dialog-btn {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  border-radius: 4px;
+  border: none;
+
+  &.-div {
+    position: relative;
+  }
+
+  &.-cancel {
+    width: 102px;
+    height: 32px;
+    background-color: #949493;
+    margin-right: 15px;
+    margin-left: 175px;
+  }
+
+  &.-save {
+    width: 102px;
+    height: 32px;
+    background-color: #426c9d;
+  }
+
+  &.-close {
+    position: relative;
+    right: 0px;
+    width: 18px;
+    height: 18px;
+    background-color: transparent;
+    padding: 0px;
+  }
+
+  &.-close-icon {
+    width: 18px;
+    height: 18px;
+    color: #000000;
+  }
+}
+
+.plan-mgt-checkbox {
+  &.-div {
+    margin-bottom: 10px;
+  }
+
+  &.-update {
+    margin-left: 50px;
+  }
+}
+
+
+.plan-mgt-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00355c;
+}
+
+.plan-mgt-input-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #686868;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+
+
+// The !important uses to ignore the nb-check basic status (default status)
+::ng-deep {
+  .nb-theme-default nb-checkbox .text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #979797 !important;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .native-input:disabled:checked + .custom-checkbox {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox {
+    border-color: #c8c8c8;
+    // border-radius: 50%;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .text{
+    padding-top: 5px;
+  }
+}
+.none-title{
+  font-size: 14px !important;
+  padding: 10px;
+  line-height: 18px;
+}
+.dialog-container-none {
+  width: 427px;
+  height: 165px;
+  background-color: #ffffff;
+}

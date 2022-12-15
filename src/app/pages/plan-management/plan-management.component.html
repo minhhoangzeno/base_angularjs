@@ -1,0 +1,197 @@
+<nb-card
+  [class.createPlanWithPlanImport]="!updateMode && !useForecasting"
+  [class.createPlanWithForecaster]="!updateMode && useForecasting"
+  [class.updatePlan]="updateMode"
+>
+  <nb-card-header class="plan-mgt-header">
+    <div class="plan-mgt-title-div row">
+      <div
+        class="plan-mgt-title"
+        [class.update-popup-width]="updateMode"
+        [class.create-popup-width]="!updateMode"
+      >
+        {{ updateMode ? 'Update Plan' : 'New Plan' }}
+      </div>
+      <button class="plan-mgt-btn -close" (click)="close()">
+        <nb-icon
+          class="plan-mgt-btn -close-icon"
+          icon="close-outline"
+          pack="eva"
+          fullWidth
+        ></nb-icon>
+      </button>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="col plan-mgt-content">
+    <div class="plan-mgt-checkbox -div">
+      <div class="plan-mgt-input-title">You want to</div>
+      <nb-checkbox
+        class="plan-mgt-checkbox"
+        [checked]="!updateMode"
+        [disabled]="!updateMode"
+        (checkedChange)="changeMode(false)"
+      >
+        Create a new plan
+      </nb-checkbox>
+      <nb-checkbox
+        class="plan-mgt-checkbox -update"
+        [checked]="updateMode"
+        [disabled]="updateMode"
+        (checkedChange)="changeMode(true)"
+      >
+        Update existing plan
+      </nb-checkbox>
+    </div>
+
+    <div *ngIf="updateMode; else createPlanTemplate">
+      <ng-container *ngTemplateOutlet="updatePlanTemplate"></ng-container>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #updatePlanTemplate>
+  <div class="col plan-import-input-div">
+    <div class="plan-mgt-input-title">Select Plan</div>
+
+    <nb-select
+      class="col-2 plan-mgt-select -box"
+      placeholder="Select existing plan"
+      [(ngModel)]="selectExistingPlan"
+    >
+      <nb-option class="plan-mgt-select -option" [value]="7">January Plan1</nb-option>
+      <nb-option class="plan-mgt-select -option" [value]="8">Febuary Plan1</nb-option>
+      <nb-option class="plan-mgt-select -option" [value]="9">March Plan1</nb-option>
+      <nb-option class="plan-mgt-select -option" [value]="10">April Plan1</nb-option>
+      <nb-option class="plan-mgt-select -option" [value]="11">May Plan1</nb-option>
+      <nb-option class="plan-mgt-select -option" [value]="12">June Plan1</nb-option>
+    </nb-select>
+  </div>
+
+  <div class="plan-mgt-update-event">Update the events</div>
+
+  <div class="col plan-mgt-view-change -title">
+    <u>View Other Changes</u>
+    <nb-icon icon="arrow-ios-downward-outline" pack="eva"></nb-icon>
+  </div>
+
+  <div class="plan-mgt-view-change -list">List of Changes</div>
+
+  <div class="row plan-mgt-btn -div">
+    <button class="plan-mgt-btn -cancel" (click)="close()">Cancel</button>
+    <button class="plan-mgt-btn -save" (click)="create()">Upload</button>
+  </div>
+</ng-template>
+
+<ng-template #createPlanTemplate>
+  <div class="col plan-import-input-div">
+    <div class="plan-mgt-input-title">Title</div>
+    <input class="plan-import-input-box -title" type="text" [(ngModel)]="planTitle" />
+  </div>
+
+  <div class="plan-mgt-checkbox -div">
+    <div class="plan-mgt-input-title">By using</div>
+    <nb-checkbox
+      class="plan-mgt-checkbox"
+      [checked]="useForecasting"
+      [disabled]="useForecasting"
+      (checkedChange)="changeCreateMode(true)"
+    >
+      SIMCEL Forecaster
+    </nb-checkbox>
+    <nb-checkbox
+      class="plan-mgt-checkbox -update"
+      [checked]="!useForecasting"
+      [disabled]="!useForecasting"
+      (checkedChange)="changeCreateMode(false)"
+    >
+      Imported Plan
+    </nb-checkbox>
+  </div>
+
+  <div *ngIf="!useForecasting">
+    <div class="plan-mgt-input-title">Select Plan</div>
+    <nb-select
+      class="col-2 plan-mgt-select -box"
+      placeholder="Select a Plan Import"
+      [(ngModel)]="selectedPlanImport"
+    >
+      <nb-option
+        class="plan-mgt-select -option"
+        *ngFor="let import of planImports | async"
+        [value]="import"
+      >
+        {{ import.name }}
+      </nb-option>
+    </nb-select>
+  </div>
+
+  <div *ngIf="useForecasting">
+    <div class="plan-mgt-input-title">Select Forecasting Method</div>
+
+    <nb-select
+      class="col-2 plan-mgt-select -box"
+      placeholder="Select a Forecasting Method"
+      [(ngModel)]="forecastingMethod"
+    >
+      <nb-option class="plan-mgt-select -option" value="Prophet">Prophet</nb-option>
+      <nb-option class="plan-mgt-select -option" value="STL">STL</nb-option>
+      <nb-option class="plan-mgt-select -option" value="Decision Tree">Decision Tree</nb-option>
+      <nb-option class="plan-mgt-select -option" value="AdaBoost">AdaBoost</nb-option>
+      <nb-option class="plan-mgt-select -option" value="Extra Trees">Extra Trees</nb-option>
+      <nb-option class="plan-mgt-select -option" value="Random Forest">Random Forest</nb-option>
+      <nb-option class="plan-mgt-select -option" value="XGB">XGB</nb-option>
+    </nb-select>
+  </div>
+
+  <div *ngIf="useForecasting" class="col plan-import-input-div">
+    <div class="plan-mgt-input-title">Select Period</div>
+    <nz-range-picker
+      class="form-control"
+      [formControl]="form_rangeSelected"
+      nzPlaceHolder="Select Date Range"
+      [nzAllowClear]="false"
+      [nzRanges]="presettedDateRanges"
+      (nzOnCalendarChange)="changeDate($event)"
+    ></nz-range-picker>
+  </div>
+
+  <div class="col plan-import-input-div">
+    <div class="plan-mgt-input-title">Description</div>
+    <textarea
+      class="plan-import-input-box -description"
+      [(ngModel)]="planDescription"
+      placeholder="Text Input"
+    ></textarea>
+  </div>
+
+  <div *ngIf="createdPlan" class="row created-plan-status-summary">
+    Created plan : {{ createdPlan?.name }}
+    <span *ngIf="createdPlan?.tasksSummary as statusSummary">
+      <nb-icon
+        *ngIf="statusSummary.status === 'inProgress'"
+        icon="alert-circle-outline"
+        status="warning"
+        nbTooltip="Plan currently processing"
+        nbTooltipIcon="alert-circle-outline"
+      ></nb-icon>
+      <nb-icon
+        *ngIf="statusSummary.status === 'failed'"
+        icon="alert-circle-outline"
+        status="danger"
+        [nbTooltip]="statusSummary.error"
+        nbTooltipIcon="alert-circle-outline"
+      ></nb-icon>
+    </span>
+  </div>
+  <div class="row plan-mgt-btn -div" *ngrxLet="creatingPlan as submitting">
+    <button class="plan-mgt-btn -cancel" (click)="close()">Cancel</button>
+    <button
+      class="plan-mgt-btn -save"
+      [disabled]="isCreateButnDisabled() || submitting"
+      style="--save-btn-color:{{ isCreateButnDisabled() ? '#c3c3c3' : '#426c9d' }};"
+      (click)="create()"
+    >
+      Create
+    </button>
+  </div>
+</ng-template>

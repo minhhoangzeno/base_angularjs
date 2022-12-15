@@ -1,0 +1,85 @@
+<div class="scenarios example-list"
+(cdkDropListDropped)="drop($event)"
+cdkDropList cdkDropListOrientation="horizontal" 
+>
+  <cel-planning-scenario-item
+    cdkDrag
+    *ngFor="let scenario of scenarios; let i = index"
+    [readonly]="readonly"
+    [scenario]="scenario"
+    [scenarios]="scenarios"
+    [isPrimary]="primary?.id === scenario.id"
+    [isHighlighted]="highlighted?.id === scenario.id"
+    (setPrimary)="setPrimary.emit($event)"
+    (setHighlighted)="setHighlighted.emit($event)"
+    (edit)="edit.emit($event)"
+    (hide)="hide.emit($event)"
+    (delete)="delete.emit($event)"
+    (clone)="clone.emit($event)"
+    class="planning-scenario-item"
+  ></cel-planning-scenario-item>
+</div>
+<div class="scenarios-btn">
+  <button
+    nbButton
+    fullWidth
+    [nbPopover]="dialog"
+    nbPopoverPlacement="bottom"
+    size="small"
+    class="add-button"
+    status="primary"
+    [class.popover-shown]="!!popover?.isShown"
+    [disabled]="scenarios.length >= 5 || readonly"
+  >
+    <div *ngIf="!!popover?.isShown" class="row content">
+      Scenario Title
+      <div class="col"></div>
+      <nb-icon icon="arrow-ios-downward-outline"></nb-icon>
+    </div>
+    <div *ngIf="!popover?.isShown">
+      <nb-icon icon="plus-circle-outline" class="plus-button" ></nb-icon>
+      Add Scenario
+    </div>
+  </button>
+</div>
+
+<ng-template #dialog let-data>
+  <nb-list class="scenario-list">
+    <nb-list-item nbButton ghost class="scenario-select -new" (click)="createScenario()">
+      <span>Create a New Scenario</span>
+    </nb-list-item>
+    <nb-list-item
+      *ngFor="let scenario of unselectedScenarios"
+      nbButton
+      ghost
+      class="scenario-select -created"
+    >
+      <span (click)="addScenario(scenario)">{{ scenario.name }}</span>
+      <button
+        nbButton
+        ghost
+        size="small"
+        shape="round"
+        [nbPopover]="moreAction"
+        [nbPopoverContext]="scenario"
+        nbPopoverPlacement="bottom"
+        class="btnAdd"
+      >
+        <nb-icon icon="more-vertical-outline"></nb-icon>
+      </button>
+    </nb-list-item>
+  </nb-list>
+</ng-template>
+
+<ng-template #moreAction let-scenario>
+  <nb-list>
+    <nb-list-item class="scenario-btn -list-item" nbButton ghost (click)="addAndEdit(scenario)">
+      <nb-icon class="scenario-btn -edit" icon="edit"></nb-icon>
+      <label class="scenario-btn -edit -label">Edit</label>
+    </nb-list-item>
+    <nb-list-item class="scenario-btn -list-item" nbButton ghost (click)="delete.emit(scenario)">
+      <nb-icon class="scenario-btn -remove" icon="trash-2-outline"></nb-icon>
+      <label class="scenario-btn -remove -label">Delete</label>
+    </nb-list-item>
+  </nb-list>
+</ng-template>

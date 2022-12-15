@@ -1,0 +1,18 @@
+<input
+  class="input"
+  #input
+  nbInput
+  type="text"
+  placeholder="type to search"
+  [nbAutocomplete]="auto"
+  (input)="search($event.target.value)"
+/>
+<nb-autocomplete #auto (selectedChange)="onSelect($event); input.value = ''">
+  <nb-option class="option" *ngFor="let opt of options" [value]="opt">
+    <div class="value">{{ opt.value }}</div>
+    <div class="type">{{ opt.type }}</div>
+  </nb-option>
+</nb-autocomplete>
+<span class="add-btn" (click)="addNewSearch()">
+  <nb-icon class="add-icon" icon="plus-outline"></nb-icon>
+</span>

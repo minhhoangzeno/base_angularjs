@@ -1,0 +1,20 @@
+<nb-card>
+  <nb-card-body class="col">
+    <button nbButton (click)="createTask()">
+      <nb-icon icon="play-circle-outline"></nb-icon>Start E2E run
+    </button>
+    <input
+      nbInput
+      type="number"
+      [value]="taskIdObs | async"
+      (input)="taskIdObs.next($any($event.target).value)"
+    />
+    <div class="border col mt-3">
+      <code>
+        Monitoring state of bull task #{{ taskIdObs | async }} (since
+        {{ lastUpdateObs | async | date: 'medium' }}):
+      </code>
+      <pre>{{ dataObs | async | json }}</pre>
+    </div>
+  </nb-card-body>
+</nb-card>

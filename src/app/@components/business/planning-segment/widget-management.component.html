@@ -1,0 +1,38 @@
+<nb-card class="widgets-mgt">
+  <nb-card-header class="widgets-mgt-header">
+    <div class="row row-header">
+      <div class="widgets-mgt-title">Select Widgets</div>
+      <button class="widgets-mgt-btn -close" (click)="close()">
+        <nb-icon
+          class="widgets-mgt-btn -close-icon"
+          icon="close-outline"
+          pack="eva"
+          fullWidth
+        ></nb-icon>
+      </button>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="widgets-mgt-body">
+    <div *ngFor="let widgetInfo of widgetsInfo">
+      <div *ngIf="isWidgetBelongsCurrentPage(widgetInfo.page)" class="row widgets-mgt-div">
+        <nb-checkbox
+          class="widgets-mgt-checkbox"
+          [checked]="isWidgetsChecked(widgetInfo.type)"
+          (checkedChange)="onCheckedChange(widgetInfo.type)"
+        ></nb-checkbox>
+        <img class="widgets-mgt-img" [src]="widgetInfo.imgPath" />
+        <div class="col">
+          <div class="{{ generateWidgetsManagementTextClass(widgetInfo.type) }}">
+            {{ widgetInfo.name }}
+          </div>
+          <div class="{{ generateWidgetsManagementTextClass(widgetInfo.type) }}">
+            {{ widgetInfo.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="widgets-mgt-btn -div">
+      <button class="widgets-mgt-btn -save" (click)="save()">Save</button>
+    </div>
+  </nb-card-body>
+</nb-card>

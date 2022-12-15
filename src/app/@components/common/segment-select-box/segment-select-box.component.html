@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="edit-event-input-label">Products:</div>
+    <cel-entity-select-box
+      entity="product"
+      [adapter]="adapter"
+      (add)="addFilter(segment.product)"
+      (update)="updateFilter(segment.product, $event, 0)"
+      *ngIf="!this.eventDetail"
+    >
+    </cel-entity-select-box>
+    <div  *ngFor="let filter of segment.product; let i = index"
+    [ngClass]="this.eventDetail ? 'result bgColorDetail' : 'result'"
+
+    >
+      <div [innerHTML]="preview(filter)"></div>
+      <div *ngIf="!this.eventDetail"
+      class="delete-btn" type="button" (click)="deleteFilter(segment.product, i)">
+        <nb-icon icon="close-circle"></nb-icon>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="edit-event-input-label">Customers:</div>
+    <cel-entity-select-box
+      entity="customer"
+      [adapter]="adapter"
+      (add)="addFilter(segment.customer)"
+      (update)="updateFilter(segment.customer, $event, 0)"
+      *ngIf="!this.eventDetail"
+
+    >
+    </cel-entity-select-box>
+    <div [ngClass]="this.eventDetail ? 'result bgColorDetail' : 'result'"
+    *ngFor="let filter of segment.customer; let i = index">
+      <div [innerHTML]="preview(filter)"></div>
+      <div *ngIf="!this.eventDetail" class="delete-btn" type="button" (click)="deleteFilter(segment.customer, i)">
+        <nb-icon icon="close-circle"></nb-icon>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="edit-event-input-label">Locations:</div>
+    <cel-entity-select-box
+      entity="location"
+      [adapter]="adapter"
+      (add)="addFilter(segment.location)"
+      (update)="updateFilter(segment.location, $event, 0)"
+      *ngIf="!this.eventDetail"
+
+    >
+    </cel-entity-select-box>
+    <div  *ngFor="let filter of segment.location; let i = index"
+    [ngClass]="this.eventDetail ? 'result bgColorDetail' : 'result'"
+    >
+      <div [innerHTML]="preview(filter)"></div>
+      <div *ngIf="!this.eventDetail"
+      class="delete-btn" type="button" (click)="deleteFilter(segment.location, i)">
+        <nb-icon icon="close-circle"></nb-icon>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<nb-card>
+  <nb-card-header class="row align-items-center">
+    <div>Finish Goods Supply</div>
+    <div class="col"></div>
+    <nb-select placeholder="Quantity Unit" [(selected)]="quantityUnit" (selectedChange)="changeQuantityUnit($event)" >
+      <nb-option value="Kg">Kg</nb-option>
+      <nb-option value="Ton">Ton</nb-option>
+      <nb-option value="Carton">Carton</nb-option>
+    </nb-select>
+    &nbsp;
+    <div _ngcontent-dii-c299="" class="ng-star-inserted">
+      <button _ngcontent-dii-c299="" [class]="returnClassBtnSelect('Day')" (click)="changeTimeUnit('Day')"> D</button>
+      <button _ngcontent-dii-c299="" [class]="returnClassBtnSelect('Week')" (click)="changeTimeUnit('Week')"> W
+      </button>
+      <button _ngcontent-dii-c299="" [class]="returnClassBtnSelect('Month')" (click)="changeTimeUnit('Month')"> M
+      </button>
+    </div>
+    &nbsp;
+  </nb-card-header>
+  <nb-card-body>
+    <cel-external-r-generated-content
+      method="POST"
+      [src]="src"
+      [params]="params"
+    ></cel-external-r-generated-content>
+  </nb-card-body>
+</nb-card>

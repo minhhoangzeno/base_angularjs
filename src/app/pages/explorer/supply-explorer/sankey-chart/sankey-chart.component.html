@@ -1,0 +1,32 @@
+<nb-card>
+  <nb-card-header class="row align-items-center">
+    <div>Transport</div>
+    <div class="col"></div>
+    <nb-select placeholder="Quantity Unit" [(selected)]="quantityUnit" (selectedChange)="changeQuantityUnit($event)">
+      <nb-option value="Kg">Kg</nb-option>
+      <nb-option value="Ton">Ton</nb-option>
+      <nb-option value="Carton">Carton</nb-option>
+      <nb-option value="Value">Value</nb-option>
+    </nb-select>
+    &nbsp;
+    <nb-select placeholder="Destination Level" [(selected)]="destinationLevel" (selectedChange)="changeDestinationLevel($event)">
+      <nb-option value="Channel">Channel</nb-option>
+      <nb-option value="KeyAccount">KeyAccount</nb-option>
+      <nb-option value="Region">Region</nb-option>
+    </nb-select>
+    &nbsp;
+    <nb-select placeholder="Product Level" [(selected)]="productLevel" (selectedChange)="changeProductLevel($event)">
+      <nb-option value="Brands">Brands</nb-option>
+      <nb-option value="SubCategory">SubCategory</nb-option>
+      <nb-option value="Category">Category</nb-option>
+    </nb-select>
+    &nbsp;
+  </nb-card-header>
+  <nb-card-body>
+    <cel-external-r-generated-content
+      method="POST"
+      [src]="src"
+      [params]="params"
+    ></cel-external-r-generated-content>
+  </nb-card-body>
+</nb-card>

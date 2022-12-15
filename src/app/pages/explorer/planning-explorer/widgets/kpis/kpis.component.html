@@ -1,0 +1,146 @@
+<section *ngrxLet="displayingScenarios as scenarios">
+  <header>
+    <div class="kpis-table-label">KPIs</div>
+    <div class="kpis-table-setting">
+      <label for="show-differences_val">Show Value Differences</label>
+      <input
+        id="show-differences_val"
+        type="radio"
+        name="show-differences"
+        value="value"
+        [(ngModel)]="comparisionMode"
+      />
+      <label for="show-differences_per">Show % Differences</label>
+      <input
+        id="show-differences_per"
+        type="radio"
+        name="show-differences"
+        value="percentage"
+        [(ngModel)]="comparisionMode"
+      />
+      <button (click)="this.openKpisSetting()" >
+        <nb-icon icon="settings-2-outline"></nb-icon>
+      </button>
+    </div>
+  </header>
+  <ng-container *ngTemplateOutlet="scenarios.length ? default : noData"> </ng-container>
+</section>
+
+
+<ng-template #noData>
+  <div class="kpi-table-no-scenario-name"></div>
+  <div class="row kpi-table-no-scenario">
+    <div class="kpi-table-no-scenario-list">
+      <nb-list>
+        <nb-list-item class="kpi-table-no-scenario-item" *ngFor="let kpi of this.selectedKpis">
+          {{ kpi.name }}
+        </nb-list-item>
+      </nb-list>
+    </div>
+    <div class="kpi-table-no-scenario-text">NO SCENARIO SELECTED</div>
+  </div>
+</ng-template>
+
+<ng-template #default>
+  <ng-container *ngrxLet="loading as loading">
+    <ng-container *ngrxLet="data as breakdowns">
+      <ng-container *ngrxLet="displayingScenarios as scenarios">
+        <ng-container *ngrxLet="highlightedScenario as highlighted">
+          <table class="kpi-table">
+            <tr class="kpi-table-scenario-name">
+              <th class="kpi-table-th-name"></th>
+              <th
+                class="kpi-table-th-value kpi-table-scenario-name"
+                *ngFor="let scenario of scenarios; let i = index"
+                style="--kpi-th-width: {{
+                  getWidthPercentageFromNumberScenarios(scenarios.length)
+                }}"
+                nbPopover="{{ scenario?.name }}" nbPopoverTrigger="hint" nbPopoverPlacement="top"
+              >
+              <!-- <div class="wrap-scenario-name" > -->
+                <cel-planning-scenario-badge [scenario]="scenario"></cel-planning-scenario-badge>
+                
+                <p [ngClass]="generatorClassScenario(scenarios.length)" >
+                  {{ isKpiNameOutOfLimit(scenario.name) ? generateShorterKpiName(scenario.name) : scenario.name }}
+                </p>    
+              <!-- </div> -->
+            </th>
+            </tr>
+            <tbody
+            cdkDropList
+         
+            (cdkDropListDropped)="dropSelectedKpis($event)"
+            >
+              <tr *ngFor="let kpi of this.selectedKpis; let i = index"
+              cdkDrag
+              class="kpi-setting-item"
+              >
+                <td class="kpi-table-th-name" [ngClass]="generatorClassScenario(scenarios.length)" >
+                  <label nbPopover="{{ kpi.name }}" nbPopoverTrigger="hint" nbPopoverPlacement="left">
+                    {{ isKpiNameOutOfLimit(kpi.name) ? generateShorterKpiName(kpi.name) : kpi.name }}
+                  </label>
+                </td>
+                <ng-container *ngFor="let scenario of scenarios">
+                  <ng-container
+                    *ngIf="
+                      breakdowns && !!breakdowns[scenario.id] && !loading && checkStatusScenario(scenario.id);
+                      then normalCell;
+                      else loadingCell
+                    "
+                  ></ng-container>
+                  <ng-template #normalCell>
+                    <td
+                      class="kpi-table-th-value td-right"
+                      
+                      [ngClass]="{
+                        'highlighted-scenario': highlighted?.id === scenario.id
+                      }"
+                      style="--kpi-th-width: {{
+                        getWidthPercentageFromNumberScenarios(scenarios.length)
+                      }}; --scenario-color:{{ scenario?.color || '#0C80EB' }}; --highlighted-color:{{
+                        highlightedColorTransparent(scenario?.color || '#0C80EB' )
+                      }}; --vertical-align:{{(highlighted?.id == scenario.id && scenarios.length > 1) && 'top' }} "
+                      
+                    >
+                      <div class="kpi-table-value-formatted" [ngClass]="generatorClassScenario(scenarios.length)" >
+                        <span
+                          >{{ kpiWithActualOf(scenario, kpi.shortName, breakdowns) | kpiFormatting }}
+                          {{ (kpiWithActualOf(scenario, kpi.shortName, breakdowns) | kpiFormatting) && (kpi.measureIn === 'percentage' ? '%' : '') }}</span
+                        >
+                        <span
+                          class="kpi-comparision-container"
+                          *ngIf="highlighted?.id !== scenario.id && scenarios.length > 1"
+                          [ngClass]="
+                            generateComparisionResultClass(
+                              kpiWithActualOf(highlighted, kpi.shortName, breakdowns),
+                              kpiWithActualOf(scenario, kpi.shortName, breakdowns),
+                              kpi.type
+                            )
+                          "
+                        >
+                          {{
+                            generateComparision(
+                              kpiWithActualOf(highlighted, kpi.shortName, breakdowns),
+                              kpiWithActualOf(scenario, kpi.shortName, breakdowns),
+                              comparisionMode
+                            )
+                          }}
+                        </span>
+                      </div>
+                    </td>
+                  </ng-template>
+  
+                  <ng-template #loadingCell>
+                    <td *ngIf="i === 0" [rowSpan]="this.selectedKpis.length" class="loadingCell">
+                      <nz-spin nzSimple></nz-spin>
+                    </td>
+                  </ng-template>
+                </ng-container>
+              </tr>
+            </tbody>       
+          </table>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>

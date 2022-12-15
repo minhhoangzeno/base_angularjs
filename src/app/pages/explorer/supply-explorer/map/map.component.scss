@@ -1,0 +1,50 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    height: 500px;
+  }
+
+  nb-card-body {
+    padding: 0;
+    height: 100%;
+  }
+
+  .r-map-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+
+  select:invalid {
+    color: gray;
+  }
+}
+
+div[_ngcontent-dii-c299] {
+  display: flex;
+}
+button[_ngcontent-dii-c299] {
+  width: 45px;
+  height: 30px;
+  font-family: simcel-Bw-Mitga;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 11px;
+  text-transform: uppercase;
+  color: #686868;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #686868;
+  padding: 8px;
+  background-color:#f8f8f8;
+}
+
+button.selected {
+  border-bottom-color: #d24a43;
+  color: #d24a43;
+  font-weight: bold;
+}

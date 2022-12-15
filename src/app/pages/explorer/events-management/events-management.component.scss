@@ -1,0 +1,66 @@
+.event-mnt-edit {
+  padding-right: 0px;
+  padding-left: 20px;
+}
+
+.event-mnt-plan {
+  height: 54px;
+  border: none;
+}
+
+.event-mnt-list {
+  width: 287px;
+  padding-left: 0px;
+}
+
+.event-spinner{
+  z-index: 0;
+  flex-wrap: nowrap !important;
+}
+
+.event-mnt-header {
+  &.-card {
+    margin-bottom: 0px;
+  }
+
+  &.-body {
+    padding: 0px;
+    background-color: #c8ced9;
+  }
+
+  &.-create {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #00355c;
+    margin-left: 20px;
+    border-left: 1px solid #00355c;
+    padding-left: 20px;
+  }
+
+  &.-back {
+    &.-div {
+      max-width: 7%;
+    }
+
+    &.-icon {
+      width: 20px;
+      height: 20px;
+      margin-left: 10px;
+      color: #426c9d;
+    }
+
+    &.-btn {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 16px;
+      color: #00355c;
+      border: none;
+      background-color: transparent;
+    }
+  }
+}

@@ -1,0 +1,112 @@
+<div
+  class="item"
+  [class.highlighted]="isHighlighted"
+  style="--highlighted-color:{{ highlightedColorTransparent(scenario?.color || '#0C80EB') }}"
+>
+  <div
+    class="caption"
+  >
+    <cel-planning-scenario-badge
+      [scenario]="scenario"
+      [primary]="isPrimary"
+      [isChangeColor]="'isChangeColor'"
+    ></cel-planning-scenario-badge>
+    <div class="title" 
+    [ngClass]="scenarios?.length == 5 ? 'maxWidth' : ''"
+    (click)="onHighlighScenario()"
+    nbPopover="{{ scenario?.name }}"
+    nbPopoverTrigger="hint"
+    nbPopoverPlacement="bottom"
+    >
+      {{
+        scenario?.name?.trim()
+      }}
+    </div>
+    <span *ngIf="scenario?.tasksSummary as statusSummary">
+      <nb-icon
+        class="scenario-item-alert"
+        *ngIf="statusSummary.status === 'inProgress'"
+        icon="alert-circle-outline"
+        status="warning"
+        nbTooltip="Scenario simulation still in progress"
+        nbTooltipIcon="alert-circle-outline"
+      ></nb-icon>
+      <nb-icon
+        class="scenario-item-alert"
+        *ngIf="statusSummary.status === 'failed'"
+        icon="alert-circle-outline"
+        status="danger"
+        [nbTooltip]="statusSummary.error || ''"
+        nbTooltipIcon="alert-circle-outline"
+      ></nb-icon>
+    </span>
+  </div>
+  <button
+    *ngIf="!readonly"
+    nbButton
+    ghost
+    size="small"
+    shape="round"
+    [nbPopover]="template"
+    [nbPopoverContext]="isPrimary"
+    nbPopoverPlacement="bottom"
+  >
+    <nb-icon icon="more-vertical-outline"></nb-icon>
+  </button>
+</div>
+
+<ng-template #template let-data>
+  <nb-list>
+    <nb-list-item class="scenario-btn -list-item" nbButton ghost (click)="onSetPrimary()">
+      <nb-icon
+        class="scenario-btn -primary"
+        [icon]="isPrimary ? 'primary' : 'non-primary'"
+        pack="simcel-scenario-icons"
+      ></nb-icon>
+      <label class="scenario-btn -primary -label">Make primary</label>
+    </nb-list-item>
+    <nb-list-item class="scenario-btn -list-item" nbButton ghost (click)="onClone()">
+      <nb-icon class="scenario-btn -clone" icon="copy"></nb-icon>
+      <label class="scenario-btn -clone -label">Clone</label>
+    </nb-list-item>
+    <nb-list-item class="scenario-btn -list-item" nbButton ghost (click)="onOpenUI()">
+      <nb-icon class="scenario-btn" icon="activity-outline"></nb-icon>
+      <label class="scenario-btn -label">Network</label>
+    </nb-list-item>
+    <nb-list-item
+      *ngIf="isScenarioEditable(scenario)"
+      class="scenario-btn -list-item"
+      nbButton
+      ghost
+      (click)="onEdit()"
+    >
+      <nb-icon class="scenario-btn -edit" icon="edit"></nb-icon>
+      <label class="scenario-btn -edit -label">Edit</label>
+    </nb-list-item>
+    <nb-list-item
+      *ngIf="isScenarioHideable(scenario)"
+      status="warning"
+      class="scenario-btn -list-item"
+      nbButton
+      ghost
+      (click)="onHide()"
+    >
+      <nb-icon class="scenario-btn -hide" icon="close-outline"></nb-icon>
+      <label class="scenario-btn -hide -label">Hide</label>
+    </nb-list-item>
+    <nb-list-item
+      *ngIf="isScenarioDeletable(scenario)"
+      class="scenario-btn -list-item"
+      nbButton
+      ghost
+      (click)="onDelete()"
+    >
+      <nb-icon class="scenario-btn -remove" icon="trash-2-outline"></nb-icon>
+      <label class="scenario-btn -remove -label">Delete</label>
+    </nb-list-item>
+    <nb-list-item class="scenario-btn -list-item" nbButton ghost (click)="onDownload()">
+      <nb-icon class="scenario-btn -download" icon="download-outline"></nb-icon>
+      <label class="scenario-btn -download -label">Downnload</label>
+    </nb-list-item>
+  </nb-list>
+</ng-template>

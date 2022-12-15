@@ -1,0 +1,53 @@
+.dialog-container {
+  min-width: 40em;
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.selection-list {
+  border: solid 1px #ccc;
+  height: 100%;
+  background: white;
+  border-radius: 4px;
+}
+
+.selection-item {
+  padding: 10px 24px;
+  background: white;
+  cursor: grab;
+  z-index: 10000 !important;
+
+  &:not(:last-child) {
+    border-bottom: solid 1px #ccc;
+  }
+}
+
+// These are drag and drop CSS classes. Refer to https://material.angular.io/cdk/drag-drop/overview
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.selection-list.cdk-drop-list-dragging .selection-item:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.organize-btn {
+  width: 100px;
+  height: 40px;
+
+  &.-cancel {
+    box-shadow: none;
+    margin-right: 20px;
+  }
+}

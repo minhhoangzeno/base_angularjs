@@ -1,0 +1,88 @@
+.preview-impact {
+  min-height: 200px;
+}
+
+.impact-segement-card {
+  margin: 0px 20px 20px 20px;
+}
+
+.segment-criterion-container {
+  padding-top: 3px;
+  padding-right: 0px;
+}
+
+.for-make-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00355c;
+
+  strong {
+    font-size: 12px;
+  }
+}
+
+.for-search-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #686868;
+}
+
+.add-another-search-div {
+  margin: 20px auto 20px 0px;
+}
+
+.add-another-search-btn {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration-line: underline;
+  color: #2295fb;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.plus-icon {
+  color: #2295fb;
+}
+
+.segment-impact-delete-btn {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration-line: underline;
+  text-transform: capitalize;
+  color: #c02c29;
+  border: none;
+  background-color: transparent;
+  float: right;
+}
+
+.segment-impact-delete-icon {
+  color: #c02c29;
+  float: right;
+}
+
+segment-select-box {
+  display: block;
+  padding: 6px;
+  margin-top: 16px;
+}
+
+nb-select.segment-select {
+  ::ng-deep .select-button {
+    &.placeholder {
+      font-size: 12px;
+    }
+  }
+}

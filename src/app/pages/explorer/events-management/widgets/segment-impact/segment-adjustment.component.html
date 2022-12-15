@@ -1,0 +1,65 @@
+<div class="row align-items-center segment-adjust">
+  <div class="col-3 segment-adjust-name"><strong>Adjustment</strong> on {{ name }}</div>
+  <div class="col-3 segment-adjust-box">
+    <nb-select
+      class="segment-adjust-box"
+      fullWidth
+      [selected]="signedAdjustment?.sign"
+      (selectedChange)="updateSign($event)"
+      *ngIf="!this.eventDetail"
+    >
+      <nb-option class="segment-adjust-box-option" [value]="AdjustmentSign.DECREASE"
+
+        >Decrease</nb-option
+      >
+      <nb-option class="segment-adjust-box-option" [value]="AdjustmentSign.INCREASE"
+
+        >Increase</nb-option
+      >
+    </nb-select>
+    <input
+      class="segment-adjust-value-box bgColorDetail"
+      nbInput
+      fullWidth
+      [value]="signedAdjustment?.sign"
+      [attr.disabled]="this.eventDetail"
+      *ngIf="this.eventDetail"
+    />
+  </div>
+  <div class="col-3 number-segment">
+    <input
+      class="segment-adjust-value-box"
+      [ngClass]="this.eventDetail && 'bgColorDetail'"
+      nbInput
+      fullWidth
+      type="number"
+      [value]="signedAdjustment?.value"
+      (input)="updateValue($any($event.target).value)"
+      [attr.disabled]="this.eventDetail"
+    />
+  </div>
+  <div class="col-1">
+    <nb-select
+      class="segment-adjust-box"
+      fullWidth
+      [selected]="signedAdjustment?.type"
+      (selectedChange)="updateType($event)"
+      *ngIf="!this.eventDetail"
+
+    >
+      <nb-option class="segment-adjust-box-option" [value]="AdjustmentType.PERCENTAGE"
+      >%</nb-option>
+      <nb-option class="segment-adjust-box-option" [value]="AdjustmentType.ABSOLUTE"
+      >Abs</nb-option>
+    </nb-select>
+
+    <input
+      class="segment-adjust-box-option bgColorDetail adjustmentType "
+      nbInput
+      fullWidth
+      [value]="signedAdjustment?.type == AdjustmentType.PERCENTAGE ? '%' : 'Abs' "
+      [attr.disabled]="this.eventDetail"
+      *ngIf="this.eventDetail"
+    />
+  </div>
+</div>

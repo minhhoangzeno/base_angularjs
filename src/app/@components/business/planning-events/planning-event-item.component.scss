@@ -1,0 +1,119 @@
+:host {
+  padding-left: 12px;
+}
+
+.event-name {
+  float: left;
+  margin-left: 20px;
+  margin-right: 10px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  color: #484848;
+
+  ::ng-deep {
+    label {
+      margin-bottom: 0px;
+      width: 150px;
+    }
+  }
+}
+
+nb-checkbox.event-name-check-box {
+  padding-left: 15px;
+}
+
+.event-name-with-version {
+  font-weight: bold;
+}
+
+// Styling for custom-checkbox, include hover, enabled, ...
+::ng-deep {
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox {
+    height: 16px;
+    width: 16px;
+    margin-top: 4px;
+    margin-left: 5px;
+    background-color: #ffffff;
+    border-color: #2295fb;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .native-input:enabled:focus + .custom-checkbox {
+    background-color: #ffffff;
+    border-color: #2295fb;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox:hover {
+    background-color: #2295fb;
+    border-color: #2295fb;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .native-input:enabled:active + .custom-checkbox {
+    background-color: #2295fb;
+    border-color: #2295fb;
+  }
+}
+
+// Styling for custom-checkbox when it is indeterminate, include hover, enabled, ...
+::ng-deep {
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:active
+    + .custom-checkbox.indeterminate {
+    background-color: #2295fb;
+    border-color: #2295fb;
+  }
+
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:focus
+    + .custom-checkbox.indeterminate {
+    background-color: #2295fb;
+    border-color: #2295fb;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox:hover.indeterminate {
+    background-color: #2295fb;
+    border-color: #2295fb;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox.indeterminate {
+    background-color: #2295fb;
+    border-color: #2295fb;
+  }
+}
+
+// Styling for custom-checkbox when it is checked, include hover, enabled, ...
+::ng-deep {
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:focus
+    + .custom-checkbox.checked {
+    background-color: #2295fb;
+    border-color: #2295fb;
+  }
+
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:active
+    + .custom-checkbox.checked {
+    background-color: #2295fb;
+    border-color: #2295fb;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox.checked {
+    background-color: #2295fb;
+    border-color: #2295fb;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox:hover.checked {
+    background-color: #2295fb;
+    border-color: #2295fb;
+  }
+}
+
+.scenario-badges {
+  height: 14px;
+}

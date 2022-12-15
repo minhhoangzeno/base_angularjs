@@ -1,0 +1,60 @@
+<nb-card class="impact-segement-card">
+  <nb-card-body class="container-fluid">
+    <div class="mb-4">
+      <div class="for-make-title">
+        <strong *ngIf="count">
+          {{ count.product }} Products & {{ count.customer }} Customers Selected
+        </strong>
+        &nbsp; &nbsp; &nbsp;
+        <nb-select *ngIf="!this.eventDetail" class="segment-select" placeholder="Use existing segments" (selectedChange)="useSavedSegment($event)">
+          <nb-option [value]="null">None</nb-option>
+          <nb-option *ngFor="let segment of savedSegmentsObs | async" [value]="segment">
+            {{ segment.name }}
+          </nb-option>
+        </nb-select>
+      </div>
+      <div class="segment-criterion-container">
+        <cel-segment-select-box
+          [value]="impact?.segment"
+          [adapter]="adapter"
+          (valueChanged)="updateSegment($event)"
+          [eventDetail]="this.eventDetail"
+        ></cel-segment-select-box>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div class="for-make-title">Make:</div>
+      <div class="col container" *ngIf="adjustments">
+        <cel-segment-adjustment
+          *ngIf="eventType === EventType.GENERAL_PRICING"
+          name="Product Price"
+          [adjustment]="$any(adjustments).gsv"
+          (adjustmentChange)="updateAdjustment('gsv', $event)"
+          [eventDetail]="this.eventDetail"
+        ></cel-segment-adjustment>
+        <cel-segment-adjustment
+          *ngIf="eventType === EventType.PROMOTION_CAMPAIGN"
+          name="Product Price"
+          [adjustment]="$any(adjustments).nsv"
+          (adjustmentChange)="updateAdjustment('nsv', $event)"
+          [eventDetail]="this.eventDetail"
+
+        ></cel-segment-adjustment>
+        <!-- Demand adjustment is available to all types of event. -->
+        <cel-segment-adjustment
+          name="Demand"
+          [adjustment]="adjustments.demand"
+          (adjustmentChange)="updateAdjustment('demand', $event)"
+          [eventDetail]="this.eventDetail"
+        ></cel-segment-adjustment>
+      </div>
+    </div>
+    <div class="row" *ngIf="!this.eventDetail" >
+      <div class="col"></div>
+      <nb-icon class="segment-impact-delete-icon" icon="trash-2"></nb-icon>
+      <button class="segment-impact-delete-btn" type="button" (click)="delete.emit(true)" >
+        Delete
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,84 @@
+.warning-dialog-btn {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: capitalize;
+  color: #ffffff !important;
+  border-radius: 4px;
+  border: none;
+  width: fit-content;
+  padding-left: 400px;
+
+  &.-cancel {
+    width: auto;
+    height: 32px;
+    background-color: #949493;
+    margin-right: 15px;
+  }
+
+  &.-process {
+    width: auto;
+    height: 32px;
+    background-color: #426c9d;
+  }
+}
+
+.warning-dialog-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00355c;
+}
+
+.warning-dialog {
+  width: 700px;
+}
+
+.warning-dialog-message {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
+  padding-left: 25px;
+  padding-right: 30px;
+}
+
+.warning-dialog-accordion {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+  min-height: calc(100vh - var(--event-list-excluded-height));
+  max-height: calc(100vh - var(--event-list-excluded-height));
+  background-color: #e4e3e3;
+}
+
+.warning-dialog-plan-name {
+  float: left;
+  margin-left: 20px;
+  margin-right: 30px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #484848;
+}
+
+.warning-dialog-scenario-name {
+  float: left;
+  margin-left: 20px;
+  margin-right: 22px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 13px;
+  color: #484848;
+  padding-left: 15px;
+}

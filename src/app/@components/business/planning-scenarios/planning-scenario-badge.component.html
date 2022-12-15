@@ -1,0 +1,39 @@
+<div class="col badge-container">
+  <nb-badge
+    class="scenario-badge"
+    [text]="primary ? 'P' : ' '"
+    style="--badge-color:{{ scenario?.color || '#0C80EB' }};"
+    position="top left"
+    *ngIf="!this.isChangeColor"
+  ></nb-badge>
+
+ 
+  <nb-badge
+    class="scenario-badge"
+    [text]="primary ? 'P' : ' '"
+    style="--badge-color:{{ scenario?.color || '#0C80EB' }};top: -6px;"
+    position="top left"
+    *ngIf="this.isChangeColor && this.scenario?.blankScenario"
+  ></nb-badge>
+
+  <div *ngIf="this.isChangeColor && !this.scenario?.blankScenario" class="btn_primary" >
+    <div
+    ngx-colors-trigger 
+    [hideTextInput]="true" 
+    [hideColorPicker]="true" 
+    [(ngModel)]="color"
+    (input)="changeColor()"
+    [style.background]="color"
+    style="width: 14px;height: 14px;border-radius: 7px;"
+    >
+    <div *ngIf="this.primary" class="primary" 
+    >
+    <svg height="50" width="200">
+      <text x="0" y="12" fill="black" stroke="white" stroke-width=".6px" 
+      stroke-linejoin="round"
+      >P</text>
+    </svg>
+    </div>
+  </div>
+  </div>
+</div>

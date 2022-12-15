@@ -1,0 +1,70 @@
+<header>
+  <cel-planning-import
+    [selected]="selectedPlan | ngrxPush"
+    (selectedChange)="onSelectPlanChanged($event)"
+    [plans]="plans | ngrxPush | ensureArray"
+  ></cel-planning-import>
+  <cel-planning-scenarios
+    class="plan-scenario"
+    [plan]="selectedPlan | ngrxPush"
+    [unselectedScenarios]="unselectedSceanrios | ngrxPush | ensureArray"
+    [primary]="primaryScenario | ngrxPush"
+    [scenarios]="selectedScenarios | ngrxPush | ensureArray"
+    [listScenarios]="listScenarios | ngrxPush | ensureArray"
+    [highlighted]="highlightedScenario | ngrxPush"
+    (setPrimary)="onSetPrimaryScenario($event)"
+    (setHighlighted)="onSetHighlightedScenario($event)"
+    (create)="onCreateScenario()"
+    (set)="onSetScenario($event)"
+    (add)="onSelectScenario($event)"
+    (changeDisplayedScenarios)="changeDisplayedScenarios($event)"
+    (edit)="showEditSccenarioView($event)"
+    (hide)="onDeselectScenario($event)"
+    (delete)="openConfirm(confirmDelete, $event)"
+    (clone)="onCloneScenario($event)"
+  ></cel-planning-scenarios>
+  <cel-planning-segment
+    [widgets]="selectedWidgets | ngrxPush | ensureArray"
+    (selectedWidgets)="onSelectWidgets($event)"
+  ></cel-planning-segment>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<aside>
+  <cel-planning-event-list
+    [plan]="selectedPlan | ngrxPush"
+    [user]="user | ngrxPush"
+    [editMode]="scenarioEditEnabled | ngrxPush | defaultTo: false"
+    [highlighted]="highlightedScenario | ngrxPush"
+    [scenarios]="selectedScenarios | ngrxPush | ensureArray"
+    [listScenarios]="listScenarios | ngrxPush | ensureArray"
+    [events]="events | ngrxPush | ensureArray"
+    [routerURL]="router.url"
+    (saveHighlighted)="onSaveScenario($event[0], $event[1])"
+    (cancel)="onCancelScenarioEditMode()"
+    (manage)="redirectToEventsManagement()"
+    (editInputData)="redirectToEditMasterData($event)"
+    (updatedEditMode)="onUpdateEditMode($event)"
+    (selectedEventVersions)="onSelecteEventVersions($event)"
+  ></cel-planning-event-list>
+</aside>
+
+<ng-template #confirmDelete let-scenario let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Confirm to delete scenario {{ scenario.name }}</nb-card-header>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="ref.close()">Cancel</button>
+      <button
+        nbButton
+        class="float-right"
+        status="danger"
+        (click)="ref.close(); deleteScenario(scenario)"
+      >
+        Delete
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

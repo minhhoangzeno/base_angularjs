@@ -1,0 +1,65 @@
+<nb-form-field class="popover-container">
+  <input
+    type="text"
+    class="filter-box"
+    [placeholder]="placeholder"
+    [value]="preview"
+    nbInput
+    fullWidth
+    [nbPopover]="popup"
+    nbPopoverPlacement="bottom"
+    fieldSize="small"
+    (keydown)="$event.preventDefault()"
+  />
+  <nb-icon nbSuffix icon="chevron-down-outline"></nb-icon>
+</nb-form-field>
+
+<ng-template #popup>
+  <div class="popup">
+    <div class="p-1">
+      <!-- <nb-form-field>
+            <nb-icon nbPrefix icon="search" pack="eva"></nb-icon>
+            <input class="search-filter-section" nbInput fullWidth autofocus fieldSize="small"
+                [placeholder]="searchPlaceholder" [nbFilterInput]="dataSource" />
+        </nb-form-field> -->
+        
+      <div class="select-all" style="font-size: 11px;float: right;">
+        <a href="javascript:void(0)" (click)="selectAll()">Select All</a>
+        &nbsp;&nbsp;
+        <a href="javascript:void(0)" (click)="deselectAll()">Deselect All</a>
+      </div>
+    </div>
+    <table *ngIf="source" [nbTreeGrid]="source">
+      <tr
+        nbTreeGridRow
+        style="--level: {{ row.level }}"
+        *nbTreeGridRowDef="let row; columns: ['value']"
+      ></tr>
+      <ng-container nbTreeGridColumnDef="value"
+      
+      >
+        <td
+          nbTreeGridCell
+          *nbTreeGridCellDef="let row"
+          [style.paddingLeft]="'' + row.level * 20 + 'px'"
+          [title]="row.data.key"
+        >
+
+          <nb-checkbox
+            [indeterminate]="row.data.indeterminate"
+            [checked]="row.data.selected"
+            (checkedChange)="onChanged(row.data, $event)"
+            (click)="$event.stopPropagation()"
+          >
+          </nb-checkbox>
+          <span>
+            {{ row.data.title }}
+          </span>
+
+          <nb-icon nbSuffix icon="chevron-right-outline" *ngIf="showExpandIndicator && !row.expanded && row.children?.length > 0"></nb-icon>
+          <nb-icon nbSuffix icon="chevron-down-outline" *ngIf="showExpandIndicator && row.expanded && row.children?.length > 0"></nb-icon>
+        </td>
+      </ng-container>
+    </table>
+  </div>
+</ng-template>

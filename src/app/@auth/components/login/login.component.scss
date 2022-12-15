@@ -1,0 +1,113 @@
+.simcel-logo {
+  justify-content: center;
+}
+
+.title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 44px;
+  color: #efefef;
+}
+
+.form-control-group {
+  margin-left: 30%;
+}
+
+.input-box {
+  width: 240px;
+  height: 32px;
+  background-color: #fcfcfc !important;
+  border: 1px solid #e3e3e3;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #979797 !important;
+  margin-bottom: 10px;
+  padding-left: 15px;
+}
+
+.login-btn {
+  width: 240px;
+  height: 32px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #426c9d;
+  border-radius: 4px;
+  border: none;
+}
+
+// the !important uses to ignore the color from bn default theme forgot password class
+.forgot-password {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration-line: underline;
+  color: #ffffff !important;
+  margin-top: 23px;
+}
+
+nb-alert.login-alert {
+  align-items: center;
+  padding: 5px;
+
+  &.-fail {
+    background-color: #00355c;
+    border: 1px solid transparent;
+  }
+
+  &.-succeed {
+    background-color: #02864733;
+  }
+
+  ::ng-deep {
+    ul.alert-message-list {
+      width: max-content;
+
+      li.alert-message {
+        font-family: var(--text-caption-font-family);
+        font-weight: bold;
+        width: max-content;
+        margin: 0px;
+
+        &.-fail {
+          color: var(--text-danger-color);
+        }
+
+        &.-succeed {
+          color: #028647;
+        }
+
+        nb-icon.login-alert-icon {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+.validator__input{
+  height: 10px;
+  margin-bottom: 25px;
+}
+
+.wrap__login-fail{
+  height: 30px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  .login-alert{
+    padding: 3px !important;
+  }
+}

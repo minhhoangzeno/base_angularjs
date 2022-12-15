@@ -1,0 +1,56 @@
+/*!
+ * Copyright (c) Akveo 2019. All Rights Reserved.
+ * Licensed under the Single Application / Multi Application License.
+ * See LICENSE_SINGLE_APP / LICENSE_MULTI_APP in the 'docs' folder for license information on type of purchased license.
+ */
+
+@import '../../styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+  .menu-sidebar {
+    width: 70px;
+  }
+
+  .menu-sidebar ::ng-deep .scrollable {
+    background-color: #00355c;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+    width: 70px;
+    padding: 0px;
+  }
+
+  .page-header {
+    display: none;
+  }
+
+  .menu-icon {
+    width: 67px;
+    height: 80px;
+  }
+
+  .menu-logo {
+    width: 53px;
+    height: 27px;
+    margin-left: 6px;
+  }
+
+  // The !important is used to ignore the layout-container class
+  .page-footer {
+    display: none !important;
+  }
+
+  ::ng-deep {
+    nb-layout .layout .layout-container .content .columns nb-layout-column {
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 0px;
+      border-radius: 0px;
+      width: 500px;
+    }
+
+    nb-layout .scrollable-container{
+      overflow: hidden;
+    }
+  }
+}

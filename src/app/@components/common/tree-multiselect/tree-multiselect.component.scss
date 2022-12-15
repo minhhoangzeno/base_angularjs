@@ -1,0 +1,14 @@
+// There is no way to allow clicking the arrow part of an input text-box so we fall
+// back to brute-forcing disabling the pointer events so the click passes through.
+::ng-deep .nb-form-field-addon {
+  pointer-events: none !important;
+}
+
+[nbInput].filter-box::placeholder {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #979797;
+}

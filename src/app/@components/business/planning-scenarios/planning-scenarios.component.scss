@@ -1,0 +1,140 @@
+@import '~@nebular/theme/styles/core/mixins';
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  button[nbButton] {
+    margin: 2px auto 2px auto;
+    background-color: #426c9d;
+    text-transform: none;
+    font-size: 14px;
+    font-family: Roboto;
+
+    &.popover-shown {
+      background-color: #fafafa;
+      color: #a6a6a6;
+      font-weight: 400;
+
+      > .content {
+        width: 100%;
+        align-items: center;
+      }
+    }
+  }
+}
+
+:host {
+  display: flex;
+}
+.scenarios {
+  width: calc(100% - 170px);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+}
+.add-button {
+  padding: 2px !important;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Roboto;
+}
+.scenarios-btn {
+  width: 200px;
+  pointer-events: var(--input-pointer-event);
+  display: flex;
+  align-items: center;
+
+  > .add-button {
+    height: 28px;
+  }
+  font-size: 14px;
+  @media(max-height:1025px){
+    font-size: 13px;
+    width: 160px;
+  }
+}
+
+.scenarios-card-body {
+  padding: 0px;
+  height: 100%;
+}
+
+.scenarios-card {
+  height: 100%;
+}
+.scenarios-items {
+  height: 100%;
+}
+
+.scenario-btn {
+  font: normal normal 12px/14px Roboto;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #b9dcfc;
+  }
+
+  &.-list-item {
+    height: auto !important;
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  &.-label {
+    margin-bottom: 0px;
+    margin-left: 10px;
+    width: auto !important;
+    justify-content: center;
+  }
+
+  &.-edit {
+    width: 16px;
+    height: 16px;
+    color: #0c80eb;
+  }
+
+  &.-remove {
+    width: 16px;
+    height: 16px;
+    color: #d24a43;
+  }
+}
+
+.scenario-list {
+  width: 274px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.scenario-select {
+  justify-content: left;
+
+  &.-new {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #2295fb;
+    span{
+      border-bottom: 1px solid #2295fb;
+    }
+  }
+
+  &.-created {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #484848;
+  }
+}
+
+.plus-button{
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  height: 15px !important;
+  font-size: 15px !important;
+}

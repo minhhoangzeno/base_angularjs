@@ -1,0 +1,116 @@
+<nb-card *ngIf="this.eventVersion && eventEdit">
+  <nb-card-body class="edit-event-card-body">
+    <div class="edit-event-version">
+      <!--
+      Dev Note: Turns out using Angular forms is more trouble than it looks.
+      - Hitting enter on any part of the form (even inputs from the child components) will
+        trigger a form submit (??).
+        The workaround is to add `(keydown.enter)="$event.preventDefault"`.
+      - Clicking **any** button (even buttons from child components) will trigger a form
+        submit (???).
+        The workaround is to annotate each button to have `type="button"`.
+      -->
+      <form [formGroup]="eventVersionForm" (ngSubmit)="onSubmit()">
+        <div class="container-fluid row edit-event-div">
+          <div class="edit-event-info-div">
+            <label class="edit-event-input-label">Name</label>
+            <input nbInput fullWidth class="edit-event-input-box" formControlName="eventName" />
+          </div>
+          <div class="edit-event-info-div">
+            <label class="edit-event-input-label">Event Type</label>
+            <nb-select
+              class="edit-event-select-box"
+              placeholder="Select Event Type"
+              formControlName="eventType"
+            >
+              <nb-option
+                class="edit-event-option"
+                *ngFor="let e of eventTypes"
+                [disabled]="e.disabled"
+                [value]="e.value"
+                >{{ e.name }}</nb-option
+              >
+            </nb-select>
+          </div>
+          <div class="edit-event-info-div">
+            <label class="edit-event-input-label">Version Name</label>
+            <input
+              class="edit-event-input-box"
+              nbInput
+              type="hidden"
+              placeholder="id"
+              formControlName="id"
+            />
+            <input
+              class="edit-event-input-box"
+              nbInput
+              placeholder="Event Version Name"
+              formControlName="name"
+            />
+          </div>
+          <div class="edit-event-info-div">
+            <label class="edit-event-input-label">Period</label>
+            <nz-range-picker
+              class="form-control period-range"
+              formControlName="period"
+              nzPlaceHolder="Select Date Range"
+              [nzAllowClear]="false"
+              [nzDisabledDate]="selectableDateRangeFn | async | defaultTo: noDateAllowed"
+              [nzRanges]="presettedDateRanges | async | defaultTo: {}"
+              
+            ></nz-range-picker>
+          </div>
+        </div>
+        <div class="impact-segment-div">
+          <div class="edit-event-block-title">Impacted Segments</div>
+          <!-- Note: Using (change) instead of (update) creates ghost events. Spooky. -->
+          <cel-segment-impact
+            *ngFor="let impact of impactsForm.controls; let index = index"
+            [value]="impact.value"
+            [eventType]="eventVersionForm.get('eventType')?.value"
+            [plan]="plan"
+            (valueChanged)="updateImpact(index, $event)"
+            (delete)="deleteImpact(index)"
+          ></cel-segment-impact>
+          <div class="add-another-impact-div">
+            <nb-icon class="plus-icon" icon="plus-outline"></nb-icon>
+            <button class="add-another-impact-btn" type="button" (click)="addSegmentImpact()">
+              Add Another Segment Affected by the Event
+            </button>
+          </div>
+        </div>
+        <!-- <nb-card> -->
+        <!-- TODO: Turn me into another component. -->
+        <!-- <nb-card-header class="edit-event-block-title">Event Preview</nb-card-header> -->
+        <!-- <nb-card-body><div class="placeholder-preview">Placeholder</div></nb-card-body> -->
+        <!-- </nb-card> -->
+        <div class="row container-fluid align-items-center mt-2">
+          <button
+            class="edit-event-version-btn -delete"
+            type="button"
+            [disabled]="!eventVersion?.id"
+            (click)="onDelete()"
+          >
+            Delete
+          </button>
+          <div class="col"></div>
+          <button
+            class="edit-event-version-btn -cancel"
+            type="button"
+            [disabled]="!eventVersionForm.dirty"
+            (click)="onCancel()"
+          >
+            Cancel
+          </button>
+          <button
+            class="ml-2 edit-event-version-btn -save"
+            type="submit"
+            [disabled]="!eventVersionForm.valid || !plan || !eventVersionForm.dirty"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,22 @@
+<div class="supply-explorer-div">
+  <cel-planning-map
+    [src]="srcs.planning"
+    [commonParams]="commonParamsObs | async"
+    quantityUnit="Carton"
+    timeUnit="Week"
+  ></cel-planning-map>
+  <cel-planning-inventory
+    [src]="srcs.inventory"
+    [commonParams]="commonParamsObs | async"
+    quantityUnit="Carton"
+    timeUnit="Week"
+  ></cel-planning-inventory>
+
+  <cel-sankey-chart
+    [src]="srcs.sankey"
+    [commonParams]="commonParamsObs | async"
+    quantityUnit="Carton"
+    destinationLevel="Channel"
+    productLevel="Brands"
+  ></cel-sankey-chart>
+</div>

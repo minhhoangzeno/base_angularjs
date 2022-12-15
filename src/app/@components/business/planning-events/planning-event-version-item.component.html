@@ -1,0 +1,80 @@
+<div class="align-items-center event-version-div"  [ngClass]="(mode == EventListMode.EVENT_EDIT) ? 'justify-between' : '' " >
+  <div class="event-version-name" (click)="onOpenDetailVersion()" >
+    <input
+      type="radio"
+      *ngIf="scenarioEditMode"
+      class="col-1 event-version-radio-btn"
+      [name]="event?.id"
+      [disabled]="!scenarioEditMode"
+      [value]="version"
+      [checked]="checked"
+      (change)="toggle.emit(version)"
+    />
+    <span *ngIf="version?.tasksSummary as statusSummary">
+      <nb-icon
+        *ngIf="statusSummary.status === 'inProgress'"
+        icon="alert-circle-outline"
+        status="warning"
+        nbTooltip="Event generation in progress"
+        nbTooltipIcon="alert-circle-outline"
+      ></nb-icon>
+      <nb-icon
+        *ngIf="statusSummary.status === 'failed'"
+        icon="alert-circle-outline"
+        status="danger"
+        [nbTooltip]="statusSummary.error || ''"
+        nbTooltipIcon="alert-circle-outline"
+      ></nb-icon>
+    </span>
+    <label class="version-name" [nbPopover]="nbPopoverEventVersion" nbPopoverTrigger="hover" nbPopoverPlacement="left"
+        nbPopoverClass="popover-content"
+    >{{
+      isEventNameOutOfLimit(version?.name) ? generateShorterEventName(version?.name) : version?.name
+    }}</label>
+    <ng-template #nbPopoverEventVersion >
+      <div class="nbPopoverEventVersion">
+        <p><b>Name:</b> {{version?.name}} </p>
+        <p><b>Period:</b> {{version?.startDate}} - {{version?.endDate}} </p>
+        <p><b>EventType:</b> {{event?.type}} </p>
+      </div>
+    </ng-template>
+  </div>
+  <div class="scenario-badges" *ngFor="let scenario of scenarios; let i = index">
+    <div *ngFor="let scenarioEvent of scenario.events">
+      <!-- <div *ngIf="scenarioEvent == version?.id"> -->
+        <div *ngIf="checkScenarioVersion(scenarioEvent,version)">
+
+        <cel-planning-scenario-badge
+          *ngIf="mode !== EventListMode.SCENARIO_EDIT"
+          [scenario]="scenario"
+        ></cel-planning-scenario-badge>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="mode === EventListMode.EVENT_EDIT">
+    <button
+      nbButton
+      ghost
+      size="small"
+      shape="round"
+      [nbPopover]="eventVersionContextMenu"
+      nbPopoverPlacement="bottom"
+      style="margin-right: 10px;"
+    >
+      <nb-icon icon="more-vertical-outline"></nb-icon>
+    </button>
+  </div>
+</div>
+
+<ng-template #eventVersionContextMenu>
+  <nb-list>
+    <nb-list-item class="scenario-btn -list-item" nbButton ghost (click)="onEditEventVersion()">
+      <nb-icon class="scenario-btn -edit" icon="edit" pack="simcel-event-icons"></nb-icon>
+      <label class="scenario-btn -edit -label">Edit</label>
+    </nb-list-item>
+    <nb-list-item class="scenario-btn -list-item" nbButton ghost (click)="onClone()">
+      <nb-icon class="scenario-btn -edit" icon="copy-outline"></nb-icon>
+      <label class="scenario-btn -edit -label">Duplicate</label>
+    </nb-list-item>
+  </nb-list>
+</ng-template>

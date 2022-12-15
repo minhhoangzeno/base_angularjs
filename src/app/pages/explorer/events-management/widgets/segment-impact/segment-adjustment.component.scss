@@ -1,0 +1,65 @@
+.segment-adjust {
+  margin-bottom: 10px;
+}
+
+.segment-adjust-name {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: #565454;
+  padding-left: 0;
+}
+
+[nbInput].segment-adjust-value-box {
+  height: 30px !important;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal !important;
+  font-size: 12px !important;
+  line-height: 14px !important;
+  color: #000000 !important;
+}
+
+nb-select.segment-adjust-box {
+  background: #f8f8f8;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  // The !importants are used to ignore the default select-button class
+  ::ng-deep .select-button {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 12px !important;
+    line-height: 14px !important;
+    color: #000000 !important;
+  }
+}
+
+.segment-adjust-box-option {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: capitalize;
+  color: #484848;
+}
+
+.bgColorDetail{
+  background-color: #edf1f7 !important;
+}
+.adjustmentType{
+  width: 85px;
+  height: 40px;
+  text-align: center;
+  color: #333 !important;
+  text-transform: capitalize !important;
+}
+.number-segment{
+  @media (max-width:1025px){
+    margin-left: 20px;
+  }
+}

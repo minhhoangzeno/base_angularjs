@@ -1,0 +1,29 @@
+.time-series-chart {
+  background-color: white;
+  padding: 0px;
+  height: 530px;
+  margin-bottom: 20px;
+}
+
+.echart {
+  height: 100%;
+}
+
+.time-range-overlap {
+  position: relative;
+  z-index: 100;
+}
+
+section {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
+  padding: 15px;
+}
+
+cel-date-aggregation-picker {
+  position: absolute;
+  right: 20px;
+  top: 0;
+}

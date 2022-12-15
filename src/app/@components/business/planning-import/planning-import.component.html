@@ -1,0 +1,41 @@
+<div class="title">{{ getPageTitle() }}</div>
+<div class="plan-import-div">
+  <nb-select
+    class="plan-import-select"
+    placeholder="Plan Import"
+    [selected]="selected"
+    (selectedChange)="selectedPlan($event)"
+    [compareWith]="comparePlanWith"
+  >
+    <nb-option class="plan-import-option" *ngFor="let plan of plans" [value]="plan">
+      {{ plan.name }}
+      <span *ngIf="plan?.tasksSummary as statusSummary">
+        <nb-icon
+          *ngIf="statusSummary.status === 'inProgress'"
+          icon="alert-circle-outline"
+          status="warning"
+          nbTooltip="Plan currently processing"
+          nbTooltipIcon="alert-circle-outline"
+        ></nb-icon>
+        <nb-icon
+          *ngIf="statusSummary.status === 'failed'"
+          icon="alert-circle-outline"
+          status="danger"
+          [nbTooltip]="statusSummary.error || ''"
+          nbTooltipIcon="alert-circle-outline"
+        ></nb-icon>
+      </span>
+    </nb-option>
+  </nb-select>
+  <button class="new-plan-btn" (click)="openNewPlanWindow()">
+    <nb-icon icon="plus-circle-outline" style="width: 16px;" ></nb-icon> &nbsp; New Plan
+  </button>
+</div>
+<div class="down-share-div">
+  <!-- <button class="down-share-btn">
+        <nb-icon nbPrefix icon="download-outline" pack="eva"></nb-icon> Download
+      </button> -->
+  <button class="down-share-btn">
+    <nb-icon nbPrefix icon="share-outline" pack="eva"></nb-icon> Share
+  </button>
+</div>

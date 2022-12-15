@@ -1,0 +1,285 @@
+// In plan-import component, we put display as none !important to remove the fixed header of
+// nbWindow, and this header is also impacted. So we put this display as flex !important to avoid the impact.
+.plan-mgt-header {
+  display: flex !important;
+  border: none;
+  padding: 0px;
+}
+
+.plan-mgt-content {
+  padding: 0px;
+}
+
+.plan-mgt-update-event {
+  width: 609px;
+  height: 298px;
+  overflow: scroll;
+  background-color: #efefef;
+  margin-top: 24px;
+  margin-bottom: 14px;
+}
+
+.updatePlan {
+  width: 659px;
+  height: 705px;
+  margin-bottom: 0%;
+  margin-top: 0%;
+  padding: 24px;
+}
+
+.createPlanWithPlanImport {
+  width: 427px;
+  height: 480px;
+  padding: 24px 24px 15px 24px;
+}
+
+.createPlanWithForecaster {
+  width: 427px;
+  height: 545px;
+  padding: 24px 24px 15px 24px;
+}
+
+.plan-mgt-view-change {
+  margin-bottom: 14px;
+  &.-title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration-line: underline;
+    text-transform: capitalize;
+    color: #2295fb;
+    padding: 0px;
+  }
+
+  &.-list {
+    width: 609px;
+    height: 42px;
+    background-color: #efefef;
+  }
+}
+
+.plan-mgt-title-div {
+  margin-left: 0px;
+  margin-top: 0px;
+  width: 100%;
+}
+
+.update-popup-width {
+  width: 580px;
+}
+
+.create-popup-width {
+  width: 350px;
+}
+
+.plan-mgt-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00355c;
+}
+
+.plan-mgt-input-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #686868;
+  margin-bottom: 5px;
+}
+
+// The !important uses to ignore the nb-select default color
+nb-select.plan-mgt-select {
+  ::ng-deep .select-button {
+    width: 375px;
+    height: 32px;
+    background: #fcfcfc !important;
+    border: 1px solid #e3e3e3;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #484848 !important;
+
+    &.placeholder {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+      color: #484848 !important;
+    }
+  }
+}
+
+.plan-mgt-select {
+  &.-box {
+    padding: 0px;
+    margin-bottom: 20px;
+  }
+
+  &.-option {
+    max-width: 375px !important;
+    border: 1px solid #e3e3e3;
+    background: #fcfcfc;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #484848;
+    border-radius: 4px;
+    border: none;
+  }
+}
+
+.plan-import-input-div {
+  padding: 0px;
+}
+
+.plan-import-input-box {
+  background-color: #fcfcfc;
+  border: 1px solid #e3e3e3;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #484848;
+  margin-bottom: 15px;
+  padding-left: 20px;
+
+  &.-title {
+    width: 377px;
+    height: 32px;
+  }
+
+  &.-description {
+    width: 377px;
+    height: 84px;
+    resize: none;
+    padding-top: 10px;
+  }
+}
+
+[nbInput].plan-import-input-date {
+  ::ng-deep {
+    background-color: #fcfcfc;
+    border: 1px solid #e3e3e3;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #484848;
+    margin-bottom: 15px;
+    width: 377px;
+    height: 32px;
+    cursor: pointer;
+  }
+}
+
+.plan-mgt-btn {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  border-radius: 4px;
+  border: none;
+
+  &.-div {
+    position: absolute;
+    right: 20px;
+    bottom: 0px;
+  }
+
+  &.-cancel {
+    width: 102px;
+    height: 32px;
+    background-color: #949493;
+    margin-right: 15px;
+  }
+
+  &.-save {
+    width: 102px;
+    height: 32px;
+    background-color: var(--save-btn-color);
+  }
+
+  &.-save[disabled] {
+    background-color: #949493;
+  }
+
+  &.-close {
+    // margin-left: 77%;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    padding: 0px;
+  }
+
+  &.-close-icon {
+    width: 24px;
+    height: 24px;
+    color: #000000;
+  }
+}
+
+.plan-mgt-checkbox {
+  &.-div {
+    margin-bottom: 20px;
+  }
+
+  &.-update {
+    margin-left: 50px;
+
+    ::ng-deep label {
+      width: 142px;
+    }
+  }
+}
+
+// The !important uses to ignore the nb-check basic status (default status)
+::ng-deep {
+  .nb-theme-default nb-checkbox .text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #979797 !important;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .native-input:disabled:checked + .custom-checkbox {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox {
+    border-color: #c8c8c8;
+    border-radius: 50%;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .text{
+    padding-top: 5px;
+  }
+}
+
+.created-plan-status-summary {
+  margin: auto;
+}

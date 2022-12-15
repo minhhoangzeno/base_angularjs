@@ -1,0 +1,330 @@
+// This nb-tab.content-active already had a default padding. To apply our setting, we used !impotant
+nb-tab.content-active {
+  padding: 0px !important;
+}
+
+.container {
+  height: 40em;
+}
+
+nb-card-body {
+  padding: 0px;
+}
+
+.subtitle.row {
+  margin: 0;
+  margin-left: 15px;
+}
+
+.event-name-header {
+  background-color: #e4e3e3;
+  height: 30px;
+  padding: 0px;
+  border: none;
+}
+
+.event-name-body {
+  background-color: #efefef;
+
+  ::ng-deep {
+    &.item-body {
+      padding: 0px;
+    }
+  }
+}
+
+.event-list-display {
+  background-color: #ffffff;
+}
+
+.event-list-accordion {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+  min-height: calc(100vh - var(--event-list-excluded-height));
+  max-height: calc(100vh - var(--event-list-excluded-height));
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+:host nb-tab {
+  padding: 1.25rem;
+}
+
+[nbInput].search-event-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #c4c4c4;
+  border-radius: 0px;
+  font-family: Roboto;
+  color: #686868;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.search-event-result {
+  width: 50%;
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #808080;
+  padding-left: 20px;
+  margin: auto;
+}
+
+.results-manage {
+  width: 100%;
+  height: 30px;
+  margin: 0px;
+}
+
+.event-manage-div {
+  width: 50%;
+  height: 30px;
+  padding: 0px 20px 0px 0px;
+}
+
+[nbButton].event-manage-btn {
+  width: 120px;
+  height: 28px;
+  background-color: #426c9d;
+  text-transform: none;
+  font-size: 14px;
+  font-family: Roboto;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+nb-tabset.event-list-tabset {
+  ::ng-deep {
+    .tabset {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    li {
+      width: 50%;
+    }
+
+    .tab-link {
+      text-transform: none;
+      font-family: simcel-Bw-Mitga;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 14px;
+      justify-content: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .tab.active .tab-link {
+      color: #d24a43;
+
+      &::before {
+        background-color: #d24a43;
+      }
+    }
+
+    .tab:hover .tab-link {
+      color: #d24a43;
+
+      &::before {
+        background-color: #d24a43;
+      }
+    }
+  }
+}
+
+// CSS for Hide Events
+nb-toggle.event-hidden-toggle {
+  width: 100%;
+
+  ::ng-deep {
+    .toggle-label {
+      width: 100%;
+    }
+
+    .text {
+      width: 50%;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 14px;
+      color: #808080;
+      margin-left: 20px;
+    }
+
+    .toggle {
+      width: 37px;
+      height: 20px;
+      border-radius: 16px;
+      margin-left: 20%;
+    }
+
+    .toggle.checked {
+      border: 1px solid #d24a43;
+
+      .toggle-switcher {
+        background-color: #d24a43;
+        width: 14.8px;
+        height: 15px;
+        border-radius: 12px;
+        margin: 3px auto 3px 12px;
+      }
+
+      svg {
+        display: none;
+      }
+    }
+
+    .toggle:not(.checked) {
+      border: 1px solid #c8c8c8;
+
+      .toggle-switcher {
+        background-color: #c8c8c8;
+        width: 14.8px;
+        height: 15px;
+        border-radius: 12px;
+        margin: 3px 12px 3px 2px;
+      }
+    }
+  }
+}
+
+// CSS for event name in event list
+::ng-deep {
+  .nb-theme-default nb-accordion nb-accordion-item-header .expansion-indicator {
+    transform: rotate(270deg);
+  }
+}
+
+.edit-scenario {
+  padding: 0px;
+  width: 100%;
+}
+
+.edit-scenario-label {
+  font-family: simcel-Bw-Mitga;
+  font-style: normal;
+  font-weight: bold;
+
+  &.-event-edit {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  &.-scenario-edit {
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 10px;
+  }
+
+  color: #d24a43;
+  margin-left: 20px;
+}
+
+.edit-scenario-input {
+  margin: 10px 20px auto 20px;
+  width: calc(100% - 40px);
+  height: 28px;
+  border: 1px solid #e3e3e3;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: #fcfcfc;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #686868;
+}
+
+.event-btn {
+  width: 110px;
+  height: 32px;
+  border-radius: 4px;
+  color: #ffffff !important;
+
+  // important the background/text color to apply this background/text color and ignore the nbButton background/text color
+  &.-save {
+    background-color: #d24a43 !important;
+    margin-right: 20px;
+  }
+
+  // important the background/text color to apply this background/text color and ignore the nbButton background/text color
+  &.-cancel {
+    background-color: #979797 !important;
+    margin-left: 20px;
+  }
+
+  &.-div {
+    width: 100%;
+    height: auto;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin: 0px !important;
+  }
+
+  &.-child-div {
+    width: 50%;
+  }
+}
+
+.div-new-event {
+  float: right;
+  color: #2295fb;
+
+  &.-btn {
+    width: 90px;
+    height: 20px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration-line: underline;
+    border: none;
+    background-color: transparent;
+    padding: 0px;
+  }
+
+  &.-version {
+    font-size: 12px;
+    border: none;
+    text-decoration-line: underline;
+  }
+}
+
+.event-mnt-subtitle {
+  padding-top: 15px;
+}
+
+nb-form-field.event-search-field {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.button {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #426c9d;
+  border-radius: 4px;
+  border: none;
+}
+.scenario-master-input{
+  display: flex;
+  justify-content: center;
+}
+.tab-text{
+  font-size: 14px;
+  font-weight: 700;
+  font-family: simcel-Bw-Mitga;
+}

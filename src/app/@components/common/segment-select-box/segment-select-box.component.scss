@@ -1,0 +1,51 @@
+entity-select-box {
+  display: block;
+}
+
+.result {
+  display: flex;
+  margin-top: 10px;
+  padding: 6px;
+  position: relative;
+  min-height: 36px;
+  border-radius: 5px;
+  background-color: rgba(66, 108, 157, 0.25);
+  color: #00355c;
+  font-size: 12px;
+}
+
+.bgColorDetail{
+  background-color: #edf1f7;
+}
+
+.delete-btn {
+  color: #426c9d;
+  position: absolute;
+  right: 3px;
+  // center vertically
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+.segment-label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #686868;
+}
+
+.preview-filter {
+  font-size: 14px;
+}
+
+.edit-event-input-label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  color: #686868;
+  margin-bottom: 8px;
+}

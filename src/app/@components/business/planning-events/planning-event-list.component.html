@@ -1,0 +1,172 @@
+<nb-card class="event-list-display" [ngSwitch]="mode">
+  <ng-container
+    *ngSwitchCase="EventListMode.EXPLORER_DISPLAY"
+    [ngTemplateOutlet]="defaultModeTemplate"
+  ></ng-container>
+  <ng-container
+    *ngSwitchCase="EventListMode.DEMAND_DISPLAY"
+    [ngTemplateOutlet]="defaultModeTemplate"
+  ></ng-container>
+  <ng-container
+    *ngSwitchCase="EventListMode.SCENARIO_EDIT"
+    [ngTemplateOutlet]="scenarioEditModeTemplate"
+  ></ng-container>
+  <ng-container
+    *ngSwitchCase="EventListMode.EVENT_EDIT"
+    [ngTemplateOutlet]="eventEditModeTemplate"
+  ></ng-container>
+</nb-card>
+
+<ng-template #defaultModeTemplate>
+  <nb-card-body>
+    <!--
+    The lazyLoad attr in the <nb-tab> element makes the tab contents load even before selection.
+    Bad naming and weird component design though which makes testing without configuring this
+    significantly harder.
+
+    The lazyLoad attr is pretty important to be toggled in tests. The tests has no mechanism atm
+    to force render the content of the tab unless lazyLoad is specified.
+
+    Reference:
+    https://akveo.github.io/nebular/docs/components/tabs/api#nbtabsetcomponent
+    -->
+    <nb-tabset class="event-list-tabset" fullWidth>
+      <nb-tab tabTitle="Events" [lazyLoad]="true">
+        <ng-container [ngTemplateOutlet]="eventListTemplate"></ng-container>
+      </nb-tab>
+      <nb-tab tabTitle="Comments" [lazyLoad]="true">
+        <cel-planning-comments [plan]="plan" [user]="user"></cel-planning-comments>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</ng-template>
+
+<ng-template #scenarioEditModeTemplate>
+  <nb-card-body>
+    <div class="edit-scenario">
+      <div class="edit-scenario-label -scenario-edit">Edit Scenario for</div>
+      <input [(ngModel)]="scenarioName" class="edit-scenario-input" />
+    </div>
+    <div class="edit-scenario">
+      <label class="edit-scenario-label">
+        <input [(ngModel)]="scenarioSimulateWithUI" type="checkbox" />
+      </label>
+    </div>
+
+    <div class="edit-scenario scenario-master-input">
+      <button
+        class="button"
+        *ngIf="mode === EventListMode.DEMAND_DISPLAY || mode === EventListMode.SCENARIO_EDIT"
+        nbButton
+        status="none"
+        (click)="onEditInputData(highlighted?.id)"
+      >
+        Edit Scenario Master Input
+      </button>
+    </div>
+    <div class="edit-scenario">
+      <div class="edit-scenario-label -scenario-edit">Events</div>
+      <ng-container *ngTemplateOutlet="eventListTemplate"></ng-container>
+    </div>
+
+    <div class="row mt-3 event-btn -div">
+      <div class="event-btn -child-div">
+        <button nbButton class="event-btn -cancel" size="small" (click)="onCancel()">Cancel</button>
+      </div>
+      <div class="event-btn -child-div">
+        <button
+          nbButton
+          class="event-btn -save"
+          size="small"
+          [disabled]="!isDirty()"
+          (click)="onSaveHighlighted()"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </nb-card-body>
+</ng-template>
+
+<ng-template #eventEditModeTemplate>
+  <nb-card-body>
+    <div class="col edit-scenario">
+      <div class="subtitle row align-items-center event-mnt-subtitle">
+        <div class="edit-scenario-label -edit-event">Events</div>
+        <div class="col">
+          <button class="div-new-event -btn" (click)="createEventVersion.emit()">New Event</button>
+          <nb-icon class="div-new-event" icon="plus-outline"></nb-icon>
+        </div>
+      </div>
+      <ng-container *ngTemplateOutlet="eventListTemplate"></ng-container>
+    </div>
+  </nb-card-body>
+</ng-template>
+
+<ng-template #eventListTemplate>
+  <nb-form-field class="event-search-field">
+    <nb-icon nbPrefix icon="search" pack="eva"></nb-icon>
+    <input
+      class="search-event-input"
+      type="text"
+      nbInput
+      placeholder="Search Event"
+      fullWidth
+      shape="rectangle"
+      [(ngModel)]="searchEvent"
+      autocomplete="off"
+    />
+  </nb-form-field>
+
+  <div class="row results-manage">
+    <p class="search-event-result">{{ (events | filteringByName: searchEvent)?.length }} results</p>
+    <div class="event-manage-div">
+      <button
+        class="event-manage-btn"
+        *ngIf="mode === EventListMode.DEMAND_DISPLAY || mode === EventListMode.SCENARIO_EDIT || mode === EventListMode.EXPLORER_DISPLAY"
+        nbButton
+        status="none"
+        (click)="onManage()"
+      >
+        Manage
+      </button>
+    </div>
+  </div>
+  <nb-accordion
+    multi
+    class="event-list-accordion"
+    style="--event-list-excluded-height:{{ excludeHeightForEventList() }};"
+  >
+    <nb-accordion-item
+      class="event-list-item"
+      *ngFor="let event of events | filteringByName: searchEvent"
+      [disabled]="!event?.versions?.length"
+    >
+      <nb-accordion-item-header class="event-name-header">
+        <cel-planning-event-item
+          [mode]="mode"
+          [event]="event"
+          [scenarios]="scenarios | ensureArray"
+          [checked]="highlightedHasEvent(event)"
+          (toggle)="unselectEvent($event)"
+        >
+        </cel-planning-event-item>
+      </nb-accordion-item-header>
+      <nb-accordion-item-body class="event-name-body">
+        <cel-planning-event-version-item
+          *ngFor="let version of event.versions"
+          [mode]="mode"
+          [event]="event"
+          [version]="version"
+          [scenarios]="scenarios | ensureArray"
+          [checked]="highlightedHasEventVersion(version)"
+          (toggle)="toggleEventVersionForHighlighted($event)"
+          (edit)="editEventVersion.emit($event)"
+          (clone)="cloneEventVersion.emit($event)"
+          (openDetail)="onOpenDetail.emit()"
+          (openEdit)="onOpenEdit.emit()"
+        ></cel-planning-event-version-item>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+</ng-template>

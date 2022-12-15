@@ -1,0 +1,13 @@
+<nb-card class="profit-explorer-container">
+  <nb-card-header class="row align-items-center">
+    <div>Scenario Explorer</div>
+  </nb-card-header>
+  <nb-card-body>
+    <iframe
+      *ngIf="sanitiedSrc | async as src"
+      class="profit-explorer-iframe"
+      [src]="src"
+      frameborder="0"
+    ></iframe>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,102 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  height: 48px;
+  align-items: center;
+}
+.title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  padding-left: 40px;
+  color: #00355c;
+  @media (max-width:1441px){
+    font-size: 16px;
+  }
+  @media (max-width:1025px){
+    font-size: 14px;
+  }
+}
+.down-share-div {
+  justify-self: end;
+}
+.plan-import-div {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+}
+
+.new-plan-btn {
+  width: 176px;
+  height: 32px;
+  background: #426c9d;
+  border-radius: 4px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.down-share-btn {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #426389;
+  background-color: transparent;
+  border: none;
+  margin-right: 30px;
+}
+
+// The !important uses to ignore the nb-select default color
+nb-select.plan-import-select {
+  ::ng-deep .select-button {
+    width: 176px;
+    height: 32px;
+    background-color: #e3e6ec !important;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #00355c !important;
+    opacity: 0.6;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    &.placeholder {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+      color: #00355c !important;
+    }
+  }
+}
+
+.plan-import-select {
+  padding: 0px;
+}
+
+.plan-import-option {
+  background-color: #e3e6ec;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00355c;
+}

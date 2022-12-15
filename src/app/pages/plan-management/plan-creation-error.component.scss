@@ -1,0 +1,38 @@
+.plan-creation-error-btn {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  border-radius: 4px;
+  border: none;
+  justify-content: center;
+  margin-top: 10px;
+
+  &.-cancel {
+    width: 102px;
+    height: 32px;
+    background-color: #426c9d;
+  }
+}
+
+.plan-creation-error-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00355c;
+}
+
+.plan-creation-error-message {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
+  margin-top: 10px;
+}

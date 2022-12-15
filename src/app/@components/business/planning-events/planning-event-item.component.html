@@ -1,0 +1,25 @@
+<div class="event-name-header row align-items-center">
+  <nb-checkbox
+    class="event-name-check-box"
+    *ngIf="scenarioEditMode"
+    [disabled]="!checked"
+    (change)="toggle.emit(event)"
+    [checked]="checked"
+  >
+  </nb-checkbox>
+  <div class="event-name" [class.event-name-with-version]="!isEventVersionsEmpty(event)">
+    <label nbPopover="{{event?.name}}" nbPopoverTrigger="hint" nbPopoverPlacement="left">{{
+      isEventNameOutOfLimit(event?.name) ? generateShorterEventName(event?.name) : event?.name
+    }}</label>
+  </div>
+  <div class="scenario-badges" *ngFor="let scenario of scenarios; let i = index">
+    <div *ngFor="let version of scenario.events">
+      <div *ngIf="eventHasEventVersion(event, $any(version))">
+        <cel-planning-scenario-badge
+          *ngIf="!scenarioEditMode"
+          [scenario]="scenario"
+        ></cel-planning-scenario-badge>
+      </div>
+    </div>
+  </div>
+</div>

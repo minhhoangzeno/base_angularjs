@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <nb-card class="event-mnt-header -card">
+    <!-- TODO: Turn me into another component. -->
+    <nb-card-body class="row event-mnt-header -body">
+      <div class="col-1 row event-mnt-header -back -div">
+        <button
+          class="event-mnt-header -back -btn"
+          (click)="redirectToDemandPlanning()"
+        >
+          <nb-icon
+            class="event-mnt-header -back -icon"
+            icon="arrow-back-outline"
+          ></nb-icon>
+        </button>
+      </div>
+      <div class="col event-mnt-plan">
+        <cel-planning-import
+          [selected]="selectedPlan | async | defaultTo: undefined"
+          (selectedChange)="onSelectPlanChanged($event)"
+          [plans]="sortedPlans | async | defaultTo: []"
+        ></cel-planning-import>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <div
+    class="row event-spinner"
+    [nbSpinner]="loading | async | defaultTo: false"
+    nbSpinnerStatus="primary"
+    nbSpinnerSize="giant"
+  >
+    <div class="event-mnt-list">
+      <cel-planning-event-list
+        [events]="events | async | ensureArray"
+        [eventEditMode]="true"
+        (editEventVersion)="onEditEventVersion($event)"
+        (createEventVersion)="onCreateEventVersion()"
+        (cloneEventVersion)="cloneEventVersion($event[0], $event[1])"
+        (onOpenDetail)="onOpenDetail()"
+        (onOpenEdit)="onOpenEdit()"
+      ></cel-planning-event-list>
+    </div>
+    <div class="col event-mnt-edit">
+      <cel-edit-event-version
+        [plan]="selectedPlan | async | nullToUndefined"
+        [events]="events | async | ensureArray"
+        [event]="selectedEvent | async | nullToUndefined"
+        [eventVersion]="selectedEventVersion | async | nullToUndefined"
+        (save)="saveEventVersion($event[0], $event[1])"
+        (delete)="onDeleteEventVersion($event[0], $event[1])"
+        (cancel)="onCancelEditing()"
+        [eventEdit]="eventEdit"
+
+      ></cel-edit-event-version>
+      <cel-detail-event-version
+        [plan]="selectedPlan | async | nullToUndefined"
+        [events]="events | async | ensureArray"
+        [eventDetail]="eventDetail"
+        [event]="selectedEvent | async | nullToUndefined"
+        [eventVersion]="selectedEventVersion | async | nullToUndefined"
+        (cancel)="onCancelEditing()"
+      ></cel-detail-event-version>
+      <cel-event-timeline
+        [events]="events | async | ensureArray"
+        [eventVersion]="selectedEventVersion | async | nullToUndefined"
+        [plans]="sortedPlans | async | nullToUndefined"
+        
+        [scenarios]="scenarios | async | nullToUndefined"
+        [workspace]="selectedWorkspace | async | nullToUndefined"
+        [eventDetail]="eventDetail"
+        [eventEdit]="eventEdit"
+      ></cel-event-timeline>
+    </div>
+  </div>
+</div>

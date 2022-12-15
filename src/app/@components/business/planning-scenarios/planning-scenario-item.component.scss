@@ -1,0 +1,133 @@
+.item {
+  display: flex;
+  background-color: white;
+  height: 36px;
+  border-right: 1px solid #dee2e6;
+  cursor: pointer;
+  will-change: background-color;
+  transition: background-color 0.5s;
+  &:hover {
+    background-color: var(--highlighted-color);
+  }
+}
+
+.caption {
+  flex: 1;
+  font: normal 500 14px/16px Roboto;
+  text-transform: uppercase;
+  color: #484848;
+  padding: 0 10px;
+  border-right: 1px solid #dee2e6aa;
+  display: flex;
+  align-items: center;
+
+  > .title {
+    flex: 1;
+    padding: 0 8px;
+    text-align: center;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    height: 15px;
+    font-size: 14px;
+    @media (max-width:1025px){
+      font-size: 13px;
+    }
+  }
+  @media(max-width:1025px){
+    padding-right: 0px;
+  }
+}
+.maxWidth{
+  @media (max-width:1025px){
+    max-width: 94px;
+  }
+}
+.scenario-item-label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: #484848;
+  justify-content: space-evenly;
+}
+
+.highlighted {
+  background-color: var(--highlighted-color);
+}
+
+.scenario-btn {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  cursor: pointer;
+  margin: 0;
+
+  &:hover {
+    background-color: #b9dcfc;
+  }
+
+  &.-list-item {
+    height: auto !important;
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  &.-label {
+    margin-bottom: 0px;
+    margin-left: 10px;
+    width: auto !important;
+    justify-content: center;
+  }
+
+  &.-primary {
+    width: 16px;
+    height: 16px;
+    color: #686868;
+    justify-content: space-evenly;
+  }
+
+  &.-clone {
+    width: 16px;
+    height: 16px;
+    color: #c534e9;
+  }
+
+  &.-edit {
+    width: 16px;
+    height: 16px;
+    color: #0c80eb;
+  }
+
+  &.-hide {
+    width: 16px;
+    height: 16px;
+    color: #a7700a;
+  }
+
+  &.-remove {
+    width: 16px;
+    height: 16px;
+    color: #d24a43;
+  }
+
+  &.-download {
+    width: 16px;
+    height: 16px;
+    color: #61d0b6;
+  }
+}
+
+.scenario-item-alert {
+  width: 16px;
+  height: 16px;
+  font-size: 1rem;
+}

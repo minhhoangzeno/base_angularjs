@@ -1,0 +1,15 @@
+<nb-form-field class="popover-container">
+  <input
+    type="text"
+    class="filter-box"
+    nbInput
+    fullWidth
+    [nbPopover]="component"
+    nbPopoverPlacement="bottom"
+    fieldSize="small"
+    [value]="previewSelection"
+    [placeholder]="placeholder"
+    (keydown)="$event.preventDefault()"
+  />
+  <nb-icon nbSuffix icon="chevron-down-outline"></nb-icon>
+</nb-form-field>

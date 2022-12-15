@@ -1,0 +1,19 @@
+- name: Login
+  url: http://localhost:4200/auth/login
+  widths: [1024, 1112, 1366, 1440, 1920]
+
+- name: Request Password
+  url: http://localhost:4200/auth/request-password
+  widths: [1024, 1112, 1366, 1440, 1920]
+
+- name: Business Explorer
+  url: http://localhost:4200/pages/explorer/business-explorer
+  widths: [1024, 1112, 1366, 1440, 1920]
+
+- name: Demand Planning
+  url: http://localhost:4200/pages/explorer/demand-planning
+  widths: [1024, 1112, 1366, 1440, 1920]
+
+- name: Event Management
+  url: http://localhost:4200/pages/events-management
+  widths: [1024, 1112, 1366, 1440, 1920]

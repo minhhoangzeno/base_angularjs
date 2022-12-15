@@ -1,0 +1,104 @@
+<nb-card *ngIf="this.eventVersion && eventDetail">
+  <nb-card-body class="edit-event-card-body">
+    <div class="edit-event-version">
+      <!--
+      Dev Note: Turns out using Angular forms is more trouble than it looks.
+      - Hitting enter on any part of the form (even inputs from the child components) will
+        trigger a form submit (??).
+        The workaround is to add `(keydown.enter)="$event.preventDefault"`.
+      - Clicking **any** button (even buttons from child components) will trigger a form
+        submit (???).
+        The workaround is to annotate each button to have `type="button"`.
+      -->
+      <form [formGroup]="eventVersionForm" >
+        <div class="container-fluid row edit-event-div">
+          <div class="edit-event-info-div">
+            <label class="edit-event-input-label">Name</label>
+            <input nbInput fullWidth class="edit-event-input-box bgColorDetail" [attr.disabled]="true"
+            formControlName="eventName" />
+          </div>
+          <div class="edit-event-info-div"  >
+            <label class="edit-event-input-label">Event Type</label>
+            <!-- <nb-select
+              class="edit-event-select-box bgColorDetail"
+              placeholder="Select Event Type"
+              formControlName="eventType"
+              [disabled]="this.eventDetail"
+            >
+              <nb-option
+                class="edit-event-option"
+                *ngFor="let e of eventTypes"
+                [disabled]="e.disabled"
+                [value]="e.value"
+                >{{ e.name }}</nb-option
+              >
+            </nb-select> -->
+            <input nbInput fullWidth class="edit-event-input-box bgColorDetail" [attr.disabled]="true"
+            [value]="this.eventVersionForm.get('eventType')?.value" />
+
+          </div>
+          <div class="edit-event-info-div">
+            <label class="edit-event-input-label">Version Name</label>
+            <input
+              class="edit-event-input-box bgColorDetail"
+              nbInput
+              type="hidden"
+              placeholder="id"
+              formControlName="id"
+              [attr.disabled]="true"
+            />
+            <input
+              class="edit-event-input-box bgColorDetail"
+              nbInput
+              placeholder="Event Version Name"
+              formControlName="name"
+              [attr.disabled]="true"
+
+            />
+          </div>
+          <div class="edit-event-info-div">
+            <label class="edit-event-input-label">Period</label>
+            <nz-range-picker
+              class="form-control bgColorDetail period-range"
+              formControlName="period"
+              nzPlaceHolder="Select Date Range"
+              [nzAllowClear]="false"
+              [nzDisabledDate]="selectableDateRangeFn | async | defaultTo: noDateAllowed"
+              [nzRanges]="presettedDateRanges | async | defaultTo: {}"
+              [nzDisabled]="true"
+            ></nz-range-picker>
+          </div>
+        </div>
+        <div class="impact-segment-div">
+          <div class="edit-event-block-title">Impacted Segments</div>
+          <!-- Note: Using (change) instead of (update) creates ghost events. Spooky. -->
+          <cel-segment-impact
+            *ngFor="let impact of impactsForm.controls; let index = index"
+            [value]="impact.value"
+            [eventType]="eventVersionForm.get('eventType')?.value"
+            [plan]="plan"
+            (valueChanged)="updateImpact(index, $event)"
+            (delete)="deleteImpact(index)"
+            [eventDetail]="this.eventDetail"
+          ></cel-segment-impact>
+          
+        </div>
+        <!-- <nb-card> -->
+        <!-- TODO: Turn me into another component. -->
+        <!-- <nb-card-header class="edit-event-block-title">Event Preview</nb-card-header> -->
+        <!-- <nb-card-body><div class="placeholder-preview">Placeholder</div></nb-card-body> -->
+        <!-- </nb-card> -->
+        <div class="row container-fluid align-items-center mt-2 ">
+          <div class="col"></div>
+          <button
+            class="edit-event-version-btn -cancel"
+            type="button"
+            (click)="onCancel()"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>

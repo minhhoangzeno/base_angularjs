@@ -1,0 +1,24 @@
+<div class="planning-comment-div">
+  <!-- when open list comments, it will be scroll to scrollHeight (last message) -->
+  <div class="comments-container" #scrollMe [scrollTop]="scrollMe.scrollHeight"  >
+    <div *ngFor="let comment of comments" class="comment">
+      <div class="name">
+        {{ $any(comment.user).firstName }} {{ $any(comment.user).lastName }} -
+        {{ $any(comment.user).role }}
+      </div>
+      <div class="date">{{ comment.createdAt | date: 'short' }}</div>
+      <div class="text">{{ comment.text }}</div>
+    </div>
+  </div>
+  <div class="input-container">
+    <textarea
+      nbInput
+      class="input-comment"
+      fullWidth
+      type="text"
+      placeholder="Input text"
+      [(ngModel)]="text"
+      (keydown.enter)="onEnter($event)"
+    ></textarea>
+  </div>
+</div>

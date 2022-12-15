@@ -1,0 +1,172 @@
+.popup {
+  max-width: 30em;
+  max-height: 30em;
+  overflow: auto;
+  background-color: white;
+  width: 294px;
+  display: block;
+}
+
+table {
+  max-height: 20em;
+  overflow-y: scroll;
+
+  td {
+    border: none;
+    padding: 0;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      padding-left: 8px;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+      color: #484848;
+      flex: auto;
+    }
+  }
+
+  // Put the background color for each select option in the select tree. The transparent will be different for each level.
+  tr {
+    background-color: rgba(196, 196, 196, calc(var(--level) / 5)) !important;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+// There is no way to allow clicking the arrow part of an input text-box so we fall
+// back to brute-forcing disabling the pointer events so the click passes through.
+::ng-deep .nb-form-field-addon {
+  pointer-events: none !important;
+}
+
+.filter-box {
+  cursor: pointer;
+}
+
+[nbInput].filter-box::placeholder {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #979797;
+}
+
+[nbInput].search-filter-section {
+  border-style: none none solid none;
+  background-color: transparent;
+  border-radius: 0%;
+  font-family: Roboto;
+  color: #686868;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  border-color: #c4c4c4;
+
+  &::placeholder {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #979797;
+  }
+
+  &:hover {
+    background-color: transparent;
+    border-color: #c4c4c4;
+  }
+}
+
+// Styling for custom-checkbox, include hover, enabled, ...
+::ng-deep {
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox {
+    height: 16px;
+    width: 16px;
+    margin-top: 4px;
+    margin-left: 5px;
+    background-color: #ffffff;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .native-input:enabled:focus + .custom-checkbox {
+    background-color: #ffffff;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox:hover {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .native-input:enabled:active + .custom-checkbox {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+}
+
+// Styling for custom-checkbox when it is indeterminate, include hover, enabled, ...
+::ng-deep {
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:active
+    + .custom-checkbox.indeterminate {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:focus
+    + .custom-checkbox.indeterminate {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox:hover.indeterminate {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox.indeterminate {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+}
+
+// Styling for custom-checkbox when it is checked, include hover, enabled, ...
+::ng-deep {
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:focus
+    + .custom-checkbox.checked {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default
+    nb-checkbox.status-basic
+    .native-input:enabled:active
+    + .custom-checkbox.checked {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox.checked {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+
+  .nb-theme-default nb-checkbox.status-basic .custom-checkbox:hover.checked {
+    background-color: #d24a43;
+    border-color: #d24a43;
+  }
+}

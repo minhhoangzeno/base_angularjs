@@ -1,0 +1,39 @@
+<nb-card class="dialog-container">
+  <nb-card-header>Organize Detail Results</nb-card-header>
+  <nb-card-body class="row">
+    <div class="col">
+      <p>All Fields</p>
+      <div
+        class="selection-list"
+        cdkDropList
+        #fieldsList="cdkDropList"
+        [cdkDropListData]="fields"
+        [cdkDropListConnectedTo]="groupingsList"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div *ngFor="let item of fields" cdkDrag class="selection-item">
+          {{ label(item) }}
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <p>Selection</p>
+      <div
+        class="selection-list"
+        cdkDropList
+        #groupingsList="cdkDropList"
+        [cdkDropListData]="groupings"
+        [cdkDropListConnectedTo]="fieldsList"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div *ngFor="let item of groupings" cdkDrag class="selection-item">
+          {{ label(item) }}
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="row align-items-center justify-content-end">
+    <button class="organize-btn -cancel" nbButton (click)="close()">Cancel</button>
+    <button class="organize-btn" nbButton (click)="save()" status="primary">Save</button>
+  </nb-card-footer>
+</nb-card>

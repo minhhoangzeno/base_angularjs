@@ -1,0 +1,16 @@
+<section>
+  <nz-spin nzTip="Loading..." [nzSpinning]="loading | ngrxPush | defaultTo: true">
+    <div *ngIf="!highlighted" class="overlay-item">NO SCENARIO SELECTED</div>
+    <div
+      class="echart"
+      echarts
+      [options]="options"
+      [merge]="chartOptions | ngrxPush | defaultTo: {}"
+      (chartInit)="onChartInit($event)"
+    ></div>
+    <cel-date-aggregation-picker
+      [value]="dateAgg | ngrxPush"
+      (changed)="updateDateAggregation($event)"
+    ></cel-date-aggregation-picker>
+  </nz-spin>
+</section>

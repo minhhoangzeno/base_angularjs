@@ -1,0 +1,12 @@
+<section *ngrxLet="displayingScenarios as scenarios">
+  <nz-spin nzTip="Loading..." [nzSpinning]="loading | ngrxPush | defaultTo: true">
+    <div *ngIf="!scenarios.length" class="overlay-item">NO SCENARIO SELECTED</div>
+    <div
+      echarts
+      [options]="options"
+      [merge]="optionsMerge | ngrxPush | defaultTo: {}"
+      (chartInit)="onChartInit($event)"
+      class="echart"
+    ></div>
+  </nz-spin>
+</section>
